@@ -1,40 +1,12 @@
 import expect from 'expect';
-import * as types from '../action-types';
-import { message, templateList } from '../reducers';
+import TemplateAction from '../component/time-template/template-action-types';
+import { templateList } from '../component/time-template/template-reducer';
+
+const INITIAL_STATE = '@@init';
 
 const initialStateAction = {
-  type: types.InitialAction.INITIAL_STATE,
+  type: INITIAL_STATE,
 };
-
-describe('message reducer', () => {
-  it('returns the initial state', () => {
-    expect(message(undefined, initialStateAction))
-      .toEqual({
-        open: false,
-      });
-  });
-
-  it('handles show message', () => {
-    const someMsg = 'message';
-    const showMessageAction = {
-      type: types.MessageAction.SHOW_MESSAGE,
-      message: someMsg,
-    };
-    expect(message({}, showMessageAction)).toEqual({
-      open: true,
-      message: someMsg,
-    });
-  });
-
-  it('handles hide message', () => {
-    const hideMessageAction = {
-      type: types.MessageAction.HIDE_MESSAGE,
-    };
-    expect(message({}, hideMessageAction)).toEqual({
-      open: false,
-    });
-  });
-});
 
 describe('templateList reducer', () => {
   it('returns the initial state', () => {
@@ -52,7 +24,7 @@ describe('templateList reducer', () => {
     };
 
     const addOneTemplateAction = {
-      type: types.TemplateAction.ADD_TEMPLATE,
+      type: TemplateAction.ADD_TEMPLATE,
       template: someTemplate,
     };
     expect(templateList({}, addOneTemplateAction)).toEqual({
@@ -79,7 +51,7 @@ describe('templateList reducer', () => {
     };
 
     const addMultipleTemplatesAction = {
-      type: types.TemplateAction.ADD_TEMPLATES,
+      type: TemplateAction.ADD_TEMPLATES,
       template: [someTemplate, someOtherTemplate],
     };
 
@@ -87,5 +59,43 @@ describe('templateList reducer', () => {
       [someTemplate.id]: someTemplate,
       [someOtherTemplate.id]: someOtherTemplate,
     });
+  });
+
+  it('handles update template', () => {
+    const someTemplate = {
+      activity: 'development',
+      id: 'someId',
+      name: 'template name',
+      organization_id: 'ioet',
+      person_id: 'somePersonId',
+      project_id: 'bpm',
+    };
+
+    const updateTemplateAction = {
+      type: TemplateAction.UPDATE_TEMPLATE,
+      template: someTemplate,
+    };
+    expect(templateList({}, updateTemplateAction)).toEqual({
+      [someTemplate.id]: someTemplate,
+    });
+  });
+
+  it('handles remove template', () => {
+    const someTemplate = {
+      activity: 'development',
+      id: 'someId',
+      name: 'template name',
+      organization_id: 'ioet',
+      person_id: 'somePersonId',
+      project_id: 'bpm',
+    };
+
+    const removeTemplateAction = {
+      type: TemplateAction.REMOVE_TEMPLATE,
+      templateId: someTemplate.id,
+    };
+    expect(templateList({
+      [someTemplate.id]: someTemplate,
+    }, removeTemplateAction)).toEqual({});
   });
 });

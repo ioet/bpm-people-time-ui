@@ -2,8 +2,8 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Snackbar from '@material-ui/core/Snackbar/Snackbar';
 import PropTypes from 'prop-types';
-import { MessageSnackbarConst } from '../../constants';
-import { SnackbarStyles } from '../../styles';
+import SnackbarStyles from './message-snackbar-styles';
+import MessageSnackbarConst from './message-const';
 
 const MessageSnackbar = (props) => {
   const {

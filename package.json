@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
-    "test": "jest --coverage",
+    "test": "jest --coverage --env=jsdom",
     "generate-swagger-client": "./swagger-codegen/generate-client.sh",
     "setup": "npm install && npm run generate-swagger-client"
   },
@@ -19,7 +19,9 @@
     "prop-types": "15.6.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
+    "react-google-login": "^4.0.0",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "typeface-roboto": "0.0.54"

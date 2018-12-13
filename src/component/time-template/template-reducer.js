@@ -1,23 +1,5 @@
-/* eslint-disable no-plusplus */
-import { combineReducers } from 'redux';
-import { MessageAction, TemplateAction } from './action-types';
-import { arrayToTemplateObject } from './utils/Utils';
-
-export const message = (state = { open: false }, action) => {
-  switch (action.type) {
-    case MessageAction.SHOW_MESSAGE:
-      return {
-        open: true,
-        message: action.message,
-      };
-    case MessageAction.HIDE_MESSAGE:
-      return {
-        open: false,
-      };
-    default:
-      return state;
-  }
-};
+import { arrayToTemplateObject } from '../../utils/Utils';
+import TemplateAction from './template-action-types';
 
 export const template = (state = {}, action) => {
   switch (action.type) {
@@ -44,10 +26,10 @@ export const templateList = (state = {}, action) => {
         ...state,
         ...template(undefined, action),
       };
-    case TemplateAction.UPDATE:
+    case TemplateAction.UPDATE_TEMPLATE:
       copy[action.template.id] = action.template;
       return { ...copy };
-    case TemplateAction.REMOVE:
+    case TemplateAction.REMOVE_TEMPLATE:
       delete copy[action.templateId];
       return { ...copy };
     default:
@@ -55,9 +37,4 @@ export const templateList = (state = {}, action) => {
   }
 };
 
-const rootReducer = combineReducers({
-  message,
-  templateList,
-});
-
-export default rootReducer;
+export default templateList;

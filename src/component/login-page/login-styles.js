@@ -1,12 +1,13 @@
 const LoginStyles = theme => ({
   root: {
     ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2,
-    margin: theme.spacing.unit * 2,
+    padding: 0,
+    margin: `${theme.spacing.unit * 2}px auto`,
+    maxWidth: theme.spacing.unit * 45,
+    textAlign: 'center',
   },
   heading: {
-    paddingBottom: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 4,
   },
 });
 

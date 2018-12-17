@@ -19,12 +19,12 @@ const LoginPage = (props) => {
     );
   } else {
     componentToRender = (
-      <Paper className={classes.root} elevation={1}>
+      <div className={classes.root}>
         <Typography className={classes.heading} variant="h5" component="h3">
           {LoginPageConst.TITLE}
         </Typography>
         <GoogleLoginButtonContainer />
-      </Paper>
+      </div>
     );
   }
 

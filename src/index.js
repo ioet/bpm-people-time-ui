@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus,no-undef,react/jsx-tag-spacing */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -10,9 +9,9 @@ import 'typeface-roboto';
 import App from './App';
 import rootReducer from './root-reducers';
 import { performLogin, performLogout } from './component/login-page/login-actions';
-import { getCookie, doesCookieExist } from './utils/Utils';
 import { LoginStateConst } from './component/login-page/login-const';
 import RootTheme from './root-styles';
+import CookieHandler from './cookies/CookieHandler';
 
 const store = createStore(
   rootReducer,
@@ -25,8 +24,9 @@ const store = createStore(
 //
 // store.dispatch(getTimeTemplates(userId));
 
-if (doesCookieExist(LoginStateConst.TOKEN_KEY)) {
-  store.dispatch(performLogin(getCookie(LoginStateConst.TOKEN_KEY)));
+const loginCookie = new CookieHandler(LoginStateConst.TOKEN_KEY);
+if (loginCookie.doesCookieExist()) {
+  store.dispatch(performLogin(loginCookie.getCookie()));
 } else {
   store.dispatch(performLogout());
 }

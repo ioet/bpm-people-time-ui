@@ -1,5 +1,11 @@
-import { arrayToTemplateObject } from '../../utils/Utils';
 import TemplateAction from './template-action-types';
+
+export const arrayToTemplateObject = (array, keyField) => (
+  array.reduce((obj, template) => {
+    obj[template[keyField]] = template;
+    return obj;
+  }, {})
+);
 
 export const template = (state = {}, action) => {
   switch (action.type) {

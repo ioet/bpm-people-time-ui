@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import { combineReducers } from 'redux';
 import { login } from './component/login-page/login-reducer';
 import { message } from './component/message-snackbar/message-reducer';

@@ -6,22 +6,25 @@ describe('login actions', () => {
   const COOKIE_VALUE = 'testCookieValue';
 
   it('Creates a cookie and checks if it does exist', () => {
-    Cookie.setCookie(COOKIE_NAME, COOKIE_VALUE, 1);
+    const testCookie = new Cookie(COOKIE_NAME);
+    testCookie.setValue(COOKIE_VALUE, 1);
 
-    expect(Cookie.doesCookieExist(COOKIE_NAME)).toBe(true);
+    expect(testCookie.isStored()).toBe(true);
   });
 
   it('Creates a cookie and checks if the value is correct', () => {
-    Cookie.setCookie(COOKIE_NAME, COOKIE_VALUE, 1);
+    const testCookie = new Cookie(COOKIE_NAME);
+    testCookie.setValue(COOKIE_VALUE, 1);
 
-    expect(Cookie.getCookie(COOKIE_NAME)).toEqual(COOKIE_VALUE);
+    expect(testCookie.getValue()).toEqual(COOKIE_VALUE);
   });
 
   it('Checks if cookie is deleted', () => {
-    Cookie.setCookie(COOKIE_NAME, COOKIE_VALUE, 1);
-    expect(Cookie.doesCookieExist(COOKIE_NAME)).toBe(true);
+    const testCookie = new Cookie(COOKIE_NAME);
+    testCookie.setValue(COOKIE_VALUE, 1);
+    expect(testCookie.isStored()).toBe(true);
 
-    Cookie.removeCookie(COOKIE_NAME);
-    expect(Cookie.doesCookieExist(COOKIE_NAME)).toBe(false);
+    testCookie.remove();
+    expect(testCookie.isStored()).toBe(false);
   });
 });

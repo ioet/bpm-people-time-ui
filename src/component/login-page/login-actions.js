@@ -11,7 +11,7 @@ export const loginAction = loginToken => ({
 
 export const performLogin = loginToken => (
   (dispatch) => {
-    Cookie.setCookie(LoginStateConst.TOKEN_KEY, loginToken, 1);
+    new Cookie(LoginStateConst.TOKEN_KEY).setValue(loginToken, 1);
     dispatch(loginAction(loginToken));
   }
 );
@@ -26,7 +26,7 @@ export const logoutAction = () => ({
 
 export const performLogout = () => (
   (dispatch) => {
-    Cookie.removeCookie(LoginStateConst.TOKEN_KEY);
+    new Cookie(LoginStateConst.TOKEN_KEY).remove();
     dispatch(logoutAction());
   }
 );

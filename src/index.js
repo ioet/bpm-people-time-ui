@@ -24,8 +24,9 @@ const store = createStore(
 //
 // store.dispatch(getTimeTemplates(userId));
 
-if (Cookie.doesCookieExist(LoginStateConst.TOKEN_KEY)) {
-  store.dispatch(performLogin(Cookie.getCookie(LoginStateConst.TOKEN_KEY)));
+const loginCookie = new Cookie(LoginStateConst.TOKEN_KEY);
+if (loginCookie.isStored()) {
+  store.dispatch(performLogin(loginCookie.getValue()));
 } else {
   store.dispatch(performLogout());
 }

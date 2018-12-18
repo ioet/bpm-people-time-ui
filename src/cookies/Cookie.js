@@ -1,12 +1,16 @@
 class Cookie {
-  static setCookie(name, value, daysToExpire) {
-    const date = new Date();
-    date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-    document.cookie = `${name}=${value}; expires=${date.toGMTString()}`;
+  constructor(name) {
+    this.name = name;
   }
 
-  static getCookie(name) {
-    const cookieName = `${name}=`;
+  setValue(value, daysToExpire) {
+    const date = new Date();
+    date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
+    document.cookie = `${this.name}=${value}; expires=${date.toGMTString()}`;
+  }
+
+  getValue() {
+    const cookieName = `${this.name}=`;
     const allCookies = document.cookie.split(';');
     for (let i = 0; i < allCookies.length; i++) {
       let c = allCookies[i];
@@ -16,12 +20,12 @@ class Cookie {
     return null;
   }
 
-  static doesCookieExist(name) {
-    return Cookie.getCookie(name) !== null;
+  isStored() {
+    return this.getValue(this.name) !== null;
   }
 
-  static removeCookie(name) {
-    Cookie.setCookie(name, '', -1);
+  remove() {
+    this.setValue(this.name, '', -1);
   }
 }
 

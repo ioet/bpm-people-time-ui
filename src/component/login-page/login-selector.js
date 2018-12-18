@@ -1,6 +1,6 @@
 import { LoginStateConst } from './login-const';
-import CookieHandler from '../../cookies/CookieHandler';
+import Cookie from '../../cookies/Cookie';
 
 export const isUserLoggedIn = state => (
-  state.login.isLoggedIn && new CookieHandler(LoginStateConst.TOKEN_KEY).doesCookieExist()
+  state.login.isLoggedIn && Cookie.doesCookieExist(LoginStateConst.TOKEN_KEY)
 );

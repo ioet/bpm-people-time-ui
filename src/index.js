@@ -11,7 +11,7 @@ import rootReducer from './root-reducers';
 import { performLogin, performLogout } from './component/login-page/login-actions';
 import { LoginStateConst } from './component/login-page/login-const';
 import RootTheme from './root-styles';
-import CookieHandler from './cookies/CookieHandler';
+import Cookie from './cookies/Cookie';
 
 const store = createStore(
   rootReducer,
@@ -24,9 +24,8 @@ const store = createStore(
 //
 // store.dispatch(getTimeTemplates(userId));
 
-const loginCookie = new CookieHandler(LoginStateConst.TOKEN_KEY);
-if (loginCookie.doesCookieExist()) {
-  store.dispatch(performLogin(loginCookie.getCookie()));
+if (Cookie.doesCookieExist(LoginStateConst.TOKEN_KEY)) {
+  store.dispatch(performLogin(Cookie.getCookie(LoginStateConst.TOKEN_KEY)));
 } else {
   store.dispatch(performLogout());
 }

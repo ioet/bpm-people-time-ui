@@ -1,16 +1,12 @@
-class CookieHandler {
-  constructor(name) {
-    this.name = name;
-  }
-
-  setCookie(value, daysToExpire) {
+class Cookie {
+  static setCookie(name, value, daysToExpire) {
     const date = new Date();
     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000));
-    document.cookie = `${this.name}=${value}; expires=${date.toGMTString()}`;
+    document.cookie = `${name}=${value}; expires=${date.toGMTString()}`;
   }
 
-  getCookie() {
-    const cookieName = `${this.name}=`;
+  static getCookie(name) {
+    const cookieName = `${name}=`;
     const allCookies = document.cookie.split(';');
     for (let i = 0; i < allCookies.length; i++) {
       let c = allCookies[i];
@@ -20,13 +16,13 @@ class CookieHandler {
     return null;
   }
 
-  doesCookieExist() {
-    return this.getCookie(this.name) !== null;
+  static doesCookieExist(name) {
+    return Cookie.getCookie(name) !== null;
   }
 
-  removeCookie() {
-    this.setCookie(this.name, '', -1);
+  static removeCookie(name) {
+    Cookie.setCookie(name, '', -1);
   }
 }
 
-export default CookieHandler;
+export default Cookie;

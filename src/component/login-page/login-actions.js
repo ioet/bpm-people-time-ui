@@ -1,7 +1,8 @@
 import LoginAction from './login-action-types';
 import { LoginErrorMessage, LoginStateConst } from './login-const';
 import { showMessage } from '../message-snackbar/message-actions';
-import CookieHandler from '../../cookies/CookieHandler';
+import Cookie from '../../cookies/Cookie';
+
 
 export const loginAction = loginToken => ({
   type: LoginAction.PERFORM_LOGIN,
@@ -10,7 +11,7 @@ export const loginAction = loginToken => ({
 
 export const performLogin = loginToken => (
   (dispatch) => {
-    new CookieHandler(LoginStateConst.TOKEN_KEY).setCookie(loginToken, 1);
+    Cookie.setCookie(LoginStateConst.TOKEN_KEY, loginToken, 1);
     dispatch(loginAction(loginToken));
   }
 );
@@ -25,7 +26,7 @@ export const logoutAction = () => ({
 
 export const performLogout = () => (
   (dispatch) => {
-    new CookieHandler(LoginStateConst.TOKEN_KEY).removeCookie();
+    Cookie.removeCookie(LoginStateConst.TOKEN_KEY);
     dispatch(logoutAction());
   }
 );

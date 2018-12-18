@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import MessageSnackbar from '../presentational/MessageSnackbar';
-import { hideMessage } from '../../actions';
+import MessageSnackbar from './MessageSnackbar';
+import { hideMessage } from './message-actions';
 
 const mapStateToProps = state => ({
   open: state.message.open,

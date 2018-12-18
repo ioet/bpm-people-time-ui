@@ -1,23 +1,23 @@
 import React from 'react';
-import Typography from '@material-ui/core/Typography/Typography';
-import AppBar from '@material-ui/core/AppBar/AppBar';
-import Toolbar from '@material-ui/core/Toolbar/Toolbar';
-import MessageSnackbarContainer from './component/container/MessageSnackbarContainer';
-import { AppConst } from './constants';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import MessageSnackbarContainer from './component/message-snackbar/MessageSnackbarContainer';
+import TimeTemplateContainer from './component/time-template/TimeTemplateContainer';
+import BpmAppBarContainer from './component/app-bar/BpmAppBarContainer';
+import LoginPageContainer from './component/login-page/LoginPageContainer';
+import PrivateRouteContainer from './component/login-ensurance/PrivateRouteContainer';
 
-function App() {
-  return (
-    <div>
-      <AppBar position="sticky">
-        <Toolbar>
-          <Typography variant="h6" color="inherit">
-            {AppConst.APP_TITLE}
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <MessageSnackbarContainer />
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <BpmAppBarContainer />
+
+    <Router>
+      <div>
+        <Route path="/login" component={LoginPageContainer} />
+        <PrivateRouteContainer path="/" component={TimeTemplateContainer} />
+      </div>
+    </Router>
+    <MessageSnackbarContainer />
+  </div>
+);
 
 export default App;

@@ -1,5 +1,7 @@
 import LoginAction from './login-action-types';
-import { DEFAULT_USER_ID } from '../../index';
+
+// TODO remove after functionality to get user info is implemented!
+export const DEFAULT_USER_ID = 'a7c759a7-190d-47e9-baf7-ed89b4de9783';
 
 export const loginReducer = (state = { isLoggedIn: false }, action) => {
   switch (action.type) {

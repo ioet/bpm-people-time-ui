@@ -1,7 +1,6 @@
 import expect from 'expect';
-import { loginReducer } from '../component/login-page/login-reducer';
+import { DEFAULT_USER_ID, loginReducer } from '../component/login-page/login-reducer';
 import LoginAction from '../component/login-page/login-action-types';
-import { DEFAULT_USER_ID } from '../index';
 
 const INITIAL_STATE = '@@INIT';
 

@@ -37,6 +37,3 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('root'),
   );
 });
-
-// TODO remove after functionality to get user info is implemented!
-export const DEFAULT_USER_ID = 'a7c759a7-190d-47e9-baf7-ed89b4de9783';

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import Cookie from '../cookies/Cookie';
 
-describe('login actions', () => {
+describe('Test Cookies', () => {
   const COOKIE_NAME = 'testCookieName';
   const COOKIE_VALUE = 'testCookieValue';
 

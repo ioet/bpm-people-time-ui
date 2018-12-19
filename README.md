@@ -32,6 +32,11 @@ AWS_REGION=us-east-1
 AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY
 AWS_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY
 ```
+
+Login to AWS CLI with this command:
+```
+$(aws ecr get-login --no-include-email --region us-east-1)
+```
  
 Then run this command to start the edge-server, the eureka-server and the bpm-people-api
 ```

@@ -19,7 +19,12 @@ describe('login actions', () => {
       },
     ];
 
-    const store = mockStore({ user: [] });
+    const store = mockStore({
+      user: [],
+      login: {
+        userId: 'someId',
+      },
+    });
 
     store.dispatch(performLogin(testToken));
     expect(store.getActions())

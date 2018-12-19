@@ -1,16 +1,16 @@
 import expect from 'expect';
 import TemplateAction from '../component/time-template/template-action-types';
-import { templateList } from '../component/time-template/template-reducer';
+import { templateListReducer } from '../component/time-template/template-reducer';
 
-const INITIAL_STATE = '@@init';
+const INITIAL_STATE = '@@INIT';
 
 const initialStateAction = {
   type: INITIAL_STATE,
 };
 
-describe('templateList reducer', () => {
+describe('templateListReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(templateList({}, initialStateAction)).toEqual({});
+    expect(templateListReducer({}, initialStateAction)).toEqual({});
   });
 
   it('handles add template', () => {
@@ -27,7 +27,7 @@ describe('templateList reducer', () => {
       type: TemplateAction.ADD_TEMPLATE,
       template: someTemplate,
     };
-    expect(templateList({}, addOneTemplateAction)).toEqual({
+    expect(templateListReducer({}, addOneTemplateAction)).toEqual({
       [someTemplate.id]: someTemplate,
     });
   });
@@ -55,7 +55,7 @@ describe('templateList reducer', () => {
       template: [someTemplate, someOtherTemplate],
     };
 
-    expect(templateList({}, addMultipleTemplatesAction)).toEqual({
+    expect(templateListReducer({}, addMultipleTemplatesAction)).toEqual({
       [someTemplate.id]: someTemplate,
       [someOtherTemplate.id]: someOtherTemplate,
     });
@@ -75,7 +75,7 @@ describe('templateList reducer', () => {
       type: TemplateAction.UPDATE_TEMPLATE,
       template: someTemplate,
     };
-    expect(templateList({}, updateTemplateAction)).toEqual({
+    expect(templateListReducer({}, updateTemplateAction)).toEqual({
       [someTemplate.id]: someTemplate,
     });
   });
@@ -94,7 +94,7 @@ describe('templateList reducer', () => {
       type: TemplateAction.REMOVE_TEMPLATE,
       templateId: someTemplate.id,
     };
-    expect(templateList({
+    expect(templateListReducer({
       [someTemplate.id]: someTemplate,
     }, removeTemplateAction)).toEqual({});
   });

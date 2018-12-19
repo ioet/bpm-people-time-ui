@@ -19,7 +19,7 @@ export const template = (state = {}, action) => {
       return state;
   }
 };
-export const templateList = (state = {}, action) => {
+export const templateListReducer = (state = {}, action) => {
   const copy = Object.assign({}, state);
   switch (action.type) {
     case TemplateAction.ADD_TEMPLATE:
@@ -43,4 +43,4 @@ export const templateList = (state = {}, action) => {
   }
 };
 
-export default templateList;
+export default templateListReducer;

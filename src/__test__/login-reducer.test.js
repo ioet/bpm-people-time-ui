@@ -1,16 +1,17 @@
 import expect from 'expect';
-import { login } from '../component/login-page/login-reducer';
+import { loginReducer } from '../component/login-page/login-reducer';
 import LoginAction from '../component/login-page/login-action-types';
+import { DEFAULT_USER_ID } from '../index';
 
-const INITIAL_STATE = '@@init';
+const INITIAL_STATE = '@@INIT';
 
 const initialStateAction = {
   type: INITIAL_STATE,
 };
 
-describe('login reducer', () => {
+describe('loginReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(login(undefined, initialStateAction))
+    expect(loginReducer(undefined, initialStateAction))
       .toEqual({
         isLoggedIn: false,
       });
@@ -22,9 +23,10 @@ describe('login reducer', () => {
       type: LoginAction.PERFORM_LOGIN,
       loginToken,
     };
-    expect(login({}, performLoginAction)).toEqual({
+    expect(loginReducer({}, performLoginAction)).toEqual({
       isLoggedIn: true,
       loginToken,
+      userId: DEFAULT_USER_ID,
     });
   });
 
@@ -32,7 +34,7 @@ describe('login reducer', () => {
     const performLogoutAction = {
       type: LoginAction.PERFORM_LOGOUT,
     };
-    expect(login({}, performLogoutAction)).toEqual({
+    expect(loginReducer({}, performLogoutAction)).toEqual({
       isLoggedIn: false,
     });
   });

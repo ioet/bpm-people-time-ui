@@ -2,6 +2,7 @@ import LoginAction from './login-action-types';
 import { LoginErrorMessage, LoginStateConst } from './login-const';
 import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
+import { getTimeTemplates } from '../time-template/template-actions';
 
 
 export const loginAction = loginToken => ({
@@ -13,6 +14,7 @@ export const performLogin = loginToken => (
   (dispatch) => {
     new Cookie(LoginStateConst.TOKEN_KEY).setValue(loginToken, 1);
     dispatch(loginAction(loginToken));
+    dispatch(getTimeTemplates());
   }
 );
 

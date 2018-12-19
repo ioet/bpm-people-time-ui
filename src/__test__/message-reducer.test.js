@@ -1,38 +1,38 @@
 import expect from 'expect';
 import MessageAction from '../component/message-snackbar/message-action-types';
-import { message } from '../component/message-snackbar/message-reducer';
+import { messageReducer } from '../component/message-snackbar/message-reducer';
 
-const INITIAL_STATE = '@@init';
+const INITIAL_STATE = '@@INIT';
 
 const initialStateAction = {
   type: INITIAL_STATE,
 };
 
-describe('message reducer', () => {
+describe('messageReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(message(undefined, initialStateAction))
+    expect(messageReducer(undefined, initialStateAction))
       .toEqual({
         open: false,
       });
   });
 
-  it('handles show message', () => {
+  it('handles show messageReducer', () => {
     const someMsg = 'message';
     const showMessageAction = {
       type: MessageAction.SHOW_MESSAGE,
       message: someMsg,
     };
-    expect(message({}, showMessageAction)).toEqual({
+    expect(messageReducer({}, showMessageAction)).toEqual({
       open: true,
       message: someMsg,
     });
   });
 
-  it('handles hide message', () => {
+  it('handles hide messageReducer', () => {
     const hideMessageAction = {
       type: MessageAction.HIDE_MESSAGE,
     };
-    expect(message({}, hideMessageAction)).toEqual({
+    expect(messageReducer({}, hideMessageAction)).toEqual({
       open: false,
     });
   });

@@ -535,6 +535,18 @@
       },
       "title": "ResponseEntity"
     },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "Skill"
+    },
     "TimeEvent": {
       "type": "object",
       "properties": {
@@ -550,11 +562,23 @@
         "organization_id": {
           "type": "string"
         },
+        "organization_name": {
+          "type": "string"
+        },
         "person_id": {
           "type": "string"
         },
         "project_id": {
           "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
         },
         "start_time": {
           "type": "string",
@@ -585,11 +609,23 @@
         "organization_id": {
           "type": "string"
         },
+        "organization_name": {
+          "type": "string"
+        },
         "person_id": {
           "type": "string"
         },
         "project_id": {
           "type": "string"
+        },
+        "project_name": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
         }
       },
       "title": "TimeTemplate"

@@ -1,13 +1,18 @@
 import { connect } from 'react-redux';
 import TimeTemplate from './TimeTemplate';
-import { showMessage } from '../message-snackbar/message-actions';
+import { startOrStopEvent } from '../time-event/time-event-actions';
+import { isTimeTemplateActive } from './template-selector';
+
+const mapStateToProps = (state, ownProps) => ({
+  active: isTimeTemplateActive(state, ownProps.template.id),
+});
 
 const mapDispatchToProps = dispatch => ({
-  startOrStopTemplate: id => dispatch(showMessage(`start or stop template: ${id}`)),
+  handleStartStopClick: id => dispatch(startOrStopEvent(id)),
 });
 
 const TimeTemplateContainer = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(TimeTemplate);
 

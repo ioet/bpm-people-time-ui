@@ -19,10 +19,8 @@ export const createTimeTemplate = () => (
     const timeTemplateApi = new TimeTemplateControllerApi();
 
     const template = getCreatedTemplate(getState());
-    console.log('template', template);
     return timeTemplateApi.createTimeTemplateUsingPOST(template)
       .then((response) => {
-        console.log(response);
         dispatch(addTimeTemplate(response));
         dispatch(hideCreateDialog());
         dispatch(removeAllTextFieldDataAndErrors());

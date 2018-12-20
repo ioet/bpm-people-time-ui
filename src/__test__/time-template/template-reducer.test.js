@@ -1,6 +1,6 @@
 import expect from 'expect';
-import TemplateAction from '../component/time-template/template-action-types';
-import { templateListReducer } from '../component/time-template/template-reducer';
+import TemplateAction from '../../component/time-template/template-action-types';
+import { templateListReducer } from '../../component/time-template/template-reducer';
 
 const INITIAL_STATE = '@@INIT';
 

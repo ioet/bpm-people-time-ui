@@ -5,11 +5,12 @@ import expect from 'expect';
 import nock from 'nock';
 import {
   closeCreateTemplateDialog,
-  HIDE_CREATE_TEMPLATE_DIALOG,
+  HIDE_CREATE_TEMPLATE_DIALOG, hideCreateDialog,
   SHOW_CREATE_TEMPLATE_DIALOG,
   showCreateDialog,
-} from '../component/time-template/create/create-template-actions';
-import { CLEAR_TEXT_FIELDS } from '../component/bpm-text-field/text-field-actions';
+} from '../../component/time-template/create/create-template-actions';
+import { CLEAR_TEXT_FIELDS } from '../../component/bpm-text-field/text-field-actions';
+import TemplateAction from '../../component/time-template/template-action-types';
 
 
 const middlewares = [thunk];
@@ -18,16 +19,20 @@ const timeTemplateApi = new ApiClient();
 
 describe('Tests create template actions', () => {
   it('Creates an action to open the creation dialog', () => {
-    const expectedAction = [
-      {
-        type: SHOW_CREATE_TEMPLATE_DIALOG,
-      },
-    ];
+    const expectedAction = {
+      type: SHOW_CREATE_TEMPLATE_DIALOG,
+    };
 
-    const store = mockStore({});
+    expect(showCreateDialog())
+      .toEqual(expectedAction);
+  });
 
-    store.dispatch(showCreateDialog());
-    expect(store.getActions())
+  it('Creates an action to close the creation dialog', () => {
+    const expectedAction = {
+      type: HIDE_CREATE_TEMPLATE_DIALOG,
+    };
+
+    expect(hideCreateDialog())
       .toEqual(expectedAction);
   });
 
@@ -67,6 +72,10 @@ describe('Tests create template actions', () => {
     };
     const expectedAction = [
       {
+        type: TemplateAction.ADD_TEMPLATE,
+        template: postTemplateMock,
+      },
+      {
         type: HIDE_CREATE_TEMPLATE_DIALOG,
       },
       {
@@ -87,7 +96,7 @@ describe('Tests create template actions', () => {
       },
     });
 
-    store.dispatch(closeCreateTemplateDialog(true))
+    return store.dispatch(closeCreateTemplateDialog(true))
       .then(() => {
         expect(store.getActions())
           .toEqual(expectedAction);

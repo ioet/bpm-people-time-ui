@@ -1,10 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
-import { loginFailed, performLogin, performLogout } from '../component/login-page/login-actions';
-import LoginAction from '../component/login-page/login-action-types';
-import { LoginErrorMessage } from '../component/login-page/login-const';
-import MessageAction from '../component/message-snackbar/message-action-types';
+import { loginFailed, performLogin, performLogout } from '../../component/login-page/login-actions';
+import LoginAction from '../../component/login-page/login-action-types';
+import { LoginErrorMessage } from '../../component/login-page/login-const';
+import MessageAction from '../../component/message-snackbar/message-action-types';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

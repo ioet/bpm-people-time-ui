@@ -1,5 +1,5 @@
 import expect from 'expect';
-import Cookie from '../cookies/Cookie';
+import Cookie from '../../cookies/Cookie';
 
 describe('Test Cookies', () => {
   const COOKIE_NAME = 'testCookieName';

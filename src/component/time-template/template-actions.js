@@ -24,7 +24,6 @@ export const getTimeTemplates = () => (
         dispatch(addTimeTemplates(data));
       })
       .catch((error) => {
-        // console.log(error); find a way to log this error
         dispatch(showMessage(TemplateErrorMessage.FAILED_TO_LOAD_TIME_TEMPLATES));
       });
   }

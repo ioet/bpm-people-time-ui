@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { PlayArrow } from '@material-ui/icons';
+import { PlayArrow, Stop } from '@material-ui/icons';
 import TimeTemplateStyles from './template-styles';
 import { TemplateConst } from './template-const';
 import PageSplit from '../page-split/PageSplit';
@@ -22,7 +22,9 @@ const getSkillsList = (skills) => {
 };
 
 const TimeTemplate = (props) => {
-  const { classes, template, startOrStopTemplate } = props;
+  const {
+    classes, template, active, handleStartStopClick,
+  } = props;
   const {
     id, name,
     organization_name: organizationName,
@@ -30,6 +32,8 @@ const TimeTemplate = (props) => {
     activity,
     skills,
   } = template;
+
+  const buttonIcon = (active) ? <Stop /> : <PlayArrow />;
 
   return (
     <Card className={classes.timeTemplate}>
@@ -57,10 +61,10 @@ const TimeTemplate = (props) => {
             color="secondary"
             onClick={(e) => {
               e.preventDefault();
-              startOrStopTemplate(id);
+              handleStartStopClick(id);
             }}
           >
-            <PlayArrow />
+            {buttonIcon}
           </Button>
         )}
         rightSize={2}
@@ -73,7 +77,8 @@ const TimeTemplate = (props) => {
 TimeTemplate.propTypes = {
   classes: PropTypes.object.isRequired,
   template: PropTypes.object.isRequired,
-  startOrStopTemplate: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+  handleStartStopClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(TimeTemplateStyles)(TimeTemplate);

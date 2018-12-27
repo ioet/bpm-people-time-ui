@@ -21,7 +21,7 @@ const MessageSnackbar = (props) => {
       autoHideDuration={MessageSnackbarConst.AUTO_HIDE_DURATION}
       onClose={handleClose}
       ContentProps={{
-        'aria-describedby': 'message-id',
+        'aria-describedby': 'messageReducer-id',
       }}
       message={(
         <span id="message-id">

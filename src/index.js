@@ -20,10 +20,6 @@ const store = createStore(
   ),
 );
 
-// export const userId = 'a7c759a7-190d-47e9-baf7-ed89b4de9783';
-//
-// store.dispatch(getTimeTemplates(userId));
-
 const loginCookie = new Cookie(LoginStateConst.TOKEN_KEY);
 if (loginCookie.isStored()) {
   store.dispatch(performLogin(loginCookie.getValue()));

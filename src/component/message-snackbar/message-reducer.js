@@ -1,6 +1,6 @@
 import MessageAction from './message-action-types';
 
-export const message = (state = { open: false }, action) => {
+export const messageReducer = (state = { open: false }, action) => {
   switch (action.type) {
     case MessageAction.SHOW_MESSAGE:
       return {
@@ -16,4 +16,4 @@ export const message = (state = { open: false }, action) => {
   }
 };
 
-export default message;
+export default messageReducer;

@@ -1,10 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
-import { loginFailed, performLogin, performLogout } from '../component/login-page/login-actions';
-import LoginAction from '../component/login-page/login-action-types';
-import { LoginErrorMessage } from '../component/login-page/login-const';
-import MessageAction from '../component/message-snackbar/message-action-types';
+import { loginFailed, performLogin, performLogout } from '../../component/login-page/login-actions';
+import LoginAction from '../../component/login-page/login-action-types';
+import { LoginErrorMessage } from '../../component/login-page/login-const';
+import MessageAction from '../../component/message-snackbar/message-action-types';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -27,8 +27,7 @@ describe('login actions', () => {
     });
 
     store.dispatch(performLogin(testToken));
-    expect(store.getActions())
-      .toEqual(expectedAction);
+    expect(store.getActions()).toEqual(expectedAction);
   });
 
   it('Creates an action to show an error on failure', () => {
@@ -43,8 +42,7 @@ describe('login actions', () => {
     const store = mockStore({ user: [] });
 
     store.dispatch(loginFailed(testToken));
-    expect(store.getActions())
-      .toEqual(expectedAction);
+    expect(store.getActions()).toEqual(expectedAction);
   });
 
   it('Creates an action to perform the logout', () => {
@@ -57,7 +55,6 @@ describe('login actions', () => {
     const store = mockStore({ user: [] });
 
     store.dispatch(performLogout());
-    expect(store.getActions())
-      .toEqual(expectedAction);
+    expect(store.getActions()).toEqual(expectedAction);
   });
 });

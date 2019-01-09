@@ -3,10 +3,10 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
 import nock from 'nock';
-import TemplateAction from '../component/time-template/template-action-types';
-import { getTimeTemplates } from '../component/time-template/template-actions';
-import MessageAction from '../component/message-snackbar/message-action-types';
-import { TemplateErrorMessage } from '../component/time-template/template-const';
+import TemplateAction from '../../component/time-template/template-action-types';
+import { getTimeTemplates } from '../../component/time-template/template-actions';
+import MessageAction from '../../component/message-snackbar/message-action-types';
+import { TemplateErrorMessage } from '../../component/time-template/template-const';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -70,8 +70,7 @@ describe('Test template actions', () => {
 
     return store.dispatch(getTimeTemplates())
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
@@ -98,8 +97,7 @@ describe('Test template actions', () => {
 
     return store.dispatch(getTimeTemplates())
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 });

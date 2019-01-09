@@ -1,6 +1,6 @@
 import expect from 'expect';
-import MessageAction from '../component/message-snackbar/message-action-types';
-import { messageReducer } from '../component/message-snackbar/message-reducer';
+import MessageAction from '../../component/message-snackbar/message-action-types';
+import { messageReducer } from '../../component/message-snackbar/message-reducer';
 
 const INITIAL_STATE = '@@INIT';
 
@@ -10,10 +10,9 @@ const initialStateAction = {
 
 describe('messageReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(messageReducer(undefined, initialStateAction))
-      .toEqual({
-        open: false,
-      });
+    expect(messageReducer(undefined, initialStateAction)).toEqual({
+      open: false,
+    });
   });
 
   it('handles show messageReducer', () => {

@@ -1,6 +1,6 @@
 import expect from 'expect';
-import { DEFAULT_USER_ID, loginReducer } from '../component/login-page/login-reducer';
-import LoginAction from '../component/login-page/login-action-types';
+import { DEFAULT_USER_ID, loginReducer } from '../../component/login-page/login-reducer';
+import LoginAction from '../../component/login-page/login-action-types';
 
 const INITIAL_STATE = '@@INIT';
 
@@ -10,10 +10,9 @@ const initialStateAction = {
 
 describe('loginReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(loginReducer(undefined, initialStateAction))
-      .toEqual({
-        isLoggedIn: false,
-      });
+    expect(loginReducer(undefined, initialStateAction)).toEqual({
+      isLoggedIn: false,
+    });
   });
 
   it('log a user in', () => {

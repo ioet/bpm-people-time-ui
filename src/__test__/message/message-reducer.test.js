@@ -10,10 +10,9 @@ const initialStateAction = {
 
 describe('messageReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(messageReducer(undefined, initialStateAction))
-      .toEqual({
-        open: false,
-      });
+    expect(messageReducer(undefined, initialStateAction)).toEqual({
+      open: false,
+    });
   });
 
   it('handles show messageReducer', () => {

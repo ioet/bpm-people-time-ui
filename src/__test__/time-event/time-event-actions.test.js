@@ -6,9 +6,8 @@ import configureMockStore from 'redux-mock-store';
 import {
   SET_ACTIVE_TIME_EVENT,
   setActiveTimeEvent,
-  startOrStopEvent
+  startOrStopEvent,
 } from '../../component/time-event/time-event-actions';
-import { Message } from '@material-ui/icons';
 import MessageAction from '../../component/message-snackbar/message-action-types';
 import EventErrorMessage from '../../component/time-event/time-event-const';
 
@@ -28,8 +27,7 @@ describe('Tests time-event actions', () => {
       timeEvent,
     };
 
-    expect(setActiveTimeEvent(timeEvent))
-      .toEqual(expectedActions);
+    expect(setActiveTimeEvent(timeEvent)).toEqual(expectedActions);
   });
 
   it('creates an action to set the active time event after starting it', () => {
@@ -64,8 +62,7 @@ describe('Tests time-event actions', () => {
 
     return store.dispatch(startOrStopEvent(templateId))
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
@@ -97,8 +94,7 @@ describe('Tests time-event actions', () => {
 
     return store.dispatch(startOrStopEvent(templateId))
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
@@ -134,8 +130,7 @@ describe('Tests time-event actions', () => {
 
     return store.dispatch(startOrStopEvent(templateId))
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
@@ -167,8 +162,7 @@ describe('Tests time-event actions', () => {
 
     return store.dispatch(startOrStopEvent(templateId))
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 });

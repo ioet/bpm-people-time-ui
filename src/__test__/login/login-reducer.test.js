@@ -10,10 +10,9 @@ const initialStateAction = {
 
 describe('loginReducer reducer', () => {
   it('returns the initial state', () => {
-    expect(loginReducer(undefined, initialStateAction))
-      .toEqual({
-        isLoggedIn: false,
-      });
+    expect(loginReducer(undefined, initialStateAction)).toEqual({
+      isLoggedIn: false,
+    });
   });
 
   it('log a user in', () => {

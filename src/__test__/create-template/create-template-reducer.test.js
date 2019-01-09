@@ -14,11 +14,10 @@ const initialStateAction = {
 
 describe('create template reducer', () => {
   it('returns the initial state', () => {
-    expect(createTemplate(undefined, initialStateAction))
-      .toEqual({
-        open: false,
-        createdTemplate: {},
-      });
+    expect(createTemplate(undefined, initialStateAction)).toEqual({
+      open: false,
+      createdTemplate: {},
+    });
   });
 
   it('handles show create template dialog', () => {

@@ -5,7 +5,8 @@ import expect from 'expect';
 import nock from 'nock';
 import {
   closeCreateTemplateDialog,
-  HIDE_CREATE_TEMPLATE_DIALOG, hideCreateDialog,
+  HIDE_CREATE_TEMPLATE_DIALOG,
+  hideCreateDialog,
   SHOW_CREATE_TEMPLATE_DIALOG,
   showCreateDialog,
 } from '../../component/time-template/create/create-template-actions';
@@ -23,8 +24,7 @@ describe('Tests create template actions', () => {
       type: SHOW_CREATE_TEMPLATE_DIALOG,
     };
 
-    expect(showCreateDialog())
-      .toEqual(expectedAction);
+    expect(showCreateDialog()).toEqual(expectedAction);
   });
 
   it('Creates an action to close the creation dialog', () => {
@@ -32,8 +32,7 @@ describe('Tests create template actions', () => {
       type: HIDE_CREATE_TEMPLATE_DIALOG,
     };
 
-    expect(hideCreateDialog())
-      .toEqual(expectedAction);
+    expect(hideCreateDialog()).toEqual(expectedAction);
   });
 
   it('When cancelling the dialog actions to close and remove the inputs are dispatched', () => {
@@ -49,8 +48,7 @@ describe('Tests create template actions', () => {
     const store = mockStore({});
 
     store.dispatch(closeCreateTemplateDialog(false));
-    expect(store.getActions())
-      .toEqual(expectedAction);
+    expect(store.getActions()).toEqual(expectedAction);
   });
 
   it('When submitting the dialog actions to close the dialog and to add a template are dispatched', () => {
@@ -98,8 +96,7 @@ describe('Tests create template actions', () => {
 
     return store.dispatch(closeCreateTemplateDialog(true))
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedAction);
+        expect(store.getActions()).toEqual(expectedAction);
       });
   });
 });

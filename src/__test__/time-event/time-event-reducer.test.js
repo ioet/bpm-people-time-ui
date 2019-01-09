@@ -10,8 +10,7 @@ const initialStateAction = {
 
 describe('time-event reducer', () => {
   it('returns the initial state', () => {
-    expect(reducer(undefined, initialStateAction))
-      .toEqual({});
+    expect(reducer(undefined, initialStateAction)).toEqual({});
   });
 
   it('handles set_active_time_event', () => {

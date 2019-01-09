@@ -70,8 +70,7 @@ describe('Test template actions', () => {
 
     return store.dispatch(getTimeTemplates())
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 
@@ -98,8 +97,7 @@ describe('Test template actions', () => {
 
     return store.dispatch(getTimeTemplates())
       .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedActions);
+        expect(store.getActions()).toEqual(expectedActions);
       });
   });
 });

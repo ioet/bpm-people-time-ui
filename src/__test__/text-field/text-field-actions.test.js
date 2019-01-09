@@ -21,8 +21,7 @@ describe('Tests text field actions', () => {
       value,
     };
 
-    expect(setTextFieldData(field, value))
-      .toEqual(expectedAction);
+    expect(setTextFieldData(field, value)).toEqual(expectedAction);
   });
 
   it('Creates an action to set an input error on a specified field', () => {
@@ -33,8 +32,7 @@ describe('Tests text field actions', () => {
       field,
     };
 
-    expect(setInputError(field))
-      .toEqual(expectedAction);
+    expect(setInputError(field)).toEqual(expectedAction);
   });
 
   it('Creates an action to remove an input error on a specified field', () => {
@@ -45,8 +43,7 @@ describe('Tests text field actions', () => {
       field,
     };
 
-    expect(removeInputError(field))
-      .toEqual(expectedAction);
+    expect(removeInputError(field)).toEqual(expectedAction);
   });
 
   it('Creates an action to remove input errors and data on all fields', () => {
@@ -54,7 +51,6 @@ describe('Tests text field actions', () => {
       type: CLEAR_TEXT_FIELDS,
     };
 
-    expect(removeAllTextFieldDataAndErrors())
-      .toEqual(expectedAction);
+    expect(removeAllTextFieldDataAndErrors()).toEqual(expectedAction);
   });
 });

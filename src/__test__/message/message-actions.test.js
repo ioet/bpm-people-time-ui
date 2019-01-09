@@ -10,8 +10,7 @@ describe('Tests message actions', () => {
       message,
     };
 
-    expect(showMessage(message))
-      .toEqual(expectedAction);
+    expect(showMessage(message)).toEqual(expectedAction);
   });
 
   it('Creates an action to hide a message', () => {
@@ -19,7 +18,6 @@ describe('Tests message actions', () => {
       type: MessageAction.HIDE_MESSAGE,
     };
 
-    expect(hideMessage())
-      .toEqual(expectedAction);
+    expect(hideMessage()).toEqual(expectedAction);
   });
 });

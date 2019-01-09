@@ -14,10 +14,9 @@ const initialStateAction = {
 
 describe('text field reducer', () => {
   it('returns the initial state', () => {
-    expect(reducer(undefined, initialStateAction))
-      .toEqual({
-        createdTemplateError: {},
-      });
+    expect(reducer(undefined, initialStateAction)).toEqual({
+      createdTemplateError: {},
+    });
   });
 
   it('handles set input error', () => {
@@ -50,7 +49,6 @@ describe('text field reducer', () => {
   });
 
   it('handles clear text fields and removes all errors', () => {
-
     const clearTextFieldsAction = {
       type: CLEAR_TEXT_FIELDS,
     };

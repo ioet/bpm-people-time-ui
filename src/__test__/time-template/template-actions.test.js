@@ -1,8 +1,7 @@
-import { ApiClient } from 'swagger_bpm_people_time_api';
+import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
-import nock from 'nock';
 import TemplateAction from '../../component/time-template/template-action-types';
 import { getTimeTemplates } from '../../component/time-template/template-actions';
 import MessageAction from '../../component/message-snackbar/message-action-types';
@@ -10,9 +9,16 @@ import { TemplateErrorMessage } from '../../component/time-template/template-con
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const timeTemplateApi = new ApiClient();
 
-describe('Test template actions', () => {
+describe('Test async template actions', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
+
   it('creates ADD_TEMPLATES when getting all time templates was successful', () => {
     const userId = 'someId';
     const getTemplatesMock = [
@@ -50,10 +56,13 @@ describe('Test template actions', () => {
       },
     ];
 
-    nock(timeTemplateApi.basePath)
-      .get('/time-templates')
-      .query({ personId: userId })
-      .reply(200, getTemplatesMock);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: getTemplatesMock,
+      });
+    });
 
     const expectedActions = [
       {
@@ -77,10 +86,12 @@ describe('Test template actions', () => {
   it('creates an action to show an error message when creating a template was NOT successful', () => {
     const userId = 'someId';
 
-    nock(timeTemplateApi.basePath)
-      .get('/time-templates')
-      .query({ personId: userId })
-      .reply(404);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+      });
+    });
 
     const expectedActions = [
       {

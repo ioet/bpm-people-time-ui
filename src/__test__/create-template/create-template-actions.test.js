@@ -1,8 +1,7 @@
-import { ApiClient } from 'swagger_bpm_people_time_api';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
-import nock from 'nock';
+import moxios from 'moxios';
 import {
   closeCreateTemplateDialog,
   HIDE_CREATE_TEMPLATE_DIALOG,
@@ -16,7 +15,6 @@ import TemplateAction from '../../component/time-template/template-action-types'
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const timeTemplateApi = new ApiClient();
 
 describe('Tests create template actions', () => {
   it('Creates an action to open the creation dialog', () => {
@@ -50,6 +48,16 @@ describe('Tests create template actions', () => {
     store.dispatch(closeCreateTemplateDialog(false));
     expect(store.getActions()).toEqual(expectedAction);
   });
+});
+
+describe('Testing async actions to create a template', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
 
   it('When submitting the dialog actions to close the dialog and to add a template are dispatched', () => {
     const postTemplateMock = {
@@ -81,13 +89,17 @@ describe('Tests create template actions', () => {
       },
     ];
 
-    nock(timeTemplateApi.basePath)
-      .post('/time-templates')
-      .reply(200, postTemplateMock);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: postTemplateMock,
+      });
+    });
 
     const store = mockStore({
       createTemplate: {
-        createdTemplate: {
+        templateToCreate: {
           name: 'someName',
           activity: 'someActivity',
         },

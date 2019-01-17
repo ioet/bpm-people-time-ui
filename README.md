@@ -1,5 +1,10 @@
 # bpm-people-time-ui
 
+##Build Status and Code coverage
+[![Build Status](https://travis-ci.com/ioet/bpm-people-time-ui.svg?branch=master)](https://travis-ci.com/ioet/bpm-people-time-ui)
+[![Code Coverage](https://codecov.io/gh/ioet/bpm-people-time-ui/branch/master/graph/badge.svg)](https://codecov.io/gh/ioet/bpm-people-time-ui)
+
+## Run it locally
 Run this command and everything should be setup
 ```
 npm install

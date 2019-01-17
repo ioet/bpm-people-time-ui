@@ -4,8 +4,12 @@ node_js:
 cache:
   directories:
     - node_modules
+addons:
+  sonarcloud:
+    organization: 'ioet'
 script:
   - npm test
   - npm run build
+  - sonar-scanner
 after_success:
   - bash <(curl -s https://codecov.io/bash)

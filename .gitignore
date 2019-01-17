@@ -115,5 +115,6 @@ aws.env
 build/
 react
 react-dom
+.scannerwork
 
 package-lock.json

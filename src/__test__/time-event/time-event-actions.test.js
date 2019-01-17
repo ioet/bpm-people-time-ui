@@ -1,7 +1,6 @@
 import expect from 'expect';
-import { ApiClient } from 'swagger_bpm_people_time_api';
-import nock from 'nock';
 import thunk from 'redux-thunk';
+import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import {
   SET_ACTIVE_TIME_EVENT,
@@ -13,7 +12,6 @@ import EventErrorMessage from '../../component/time-event/time-event-const';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const timeEventApi = new ApiClient();
 
 describe('Tests time-event actions', () => {
   it('creates an action to set the active time event', () => {
@@ -29,6 +27,16 @@ describe('Tests time-event actions', () => {
 
     expect(setActiveTimeEvent(timeEvent)).toEqual(expectedActions);
   });
+});
+
+describe('Tests async actions for time-events', () => {
+  beforeEach(() => {
+    moxios.install();
+  });
+
+  afterEach(() => {
+    moxios.uninstall();
+  });
 
   it('creates an action to set the active time event after starting it', () => {
     const userId = 'somePersonId';
@@ -38,10 +46,13 @@ describe('Tests time-event actions', () => {
       activity: 'some activity',
     };
 
-    nock(timeEventApi.basePath)
-      .post('/time-events/start')
-      .query({ personId: userId, templateId })
-      .reply(201, timeEvent);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 201,
+        response: timeEvent,
+      });
+    });
 
     const expectedActions = [
       {
@@ -70,10 +81,12 @@ describe('Tests time-event actions', () => {
     const userId = 'somePersonId';
     const templateId = 'someTemplateId';
 
-    nock(timeEventApi.basePath)
-      .post('/time-events/start')
-      .query({ personId: userId, templateId })
-      .reply(404);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+      });
+    });
 
     const expectedActions = [
       {
@@ -106,10 +119,13 @@ describe('Tests time-event actions', () => {
       activity: 'some activity',
     };
 
-    nock(timeEventApi.basePath)
-      .post('/time-events/stop')
-      .query({ personId: userId })
-      .reply(200, timeEvent);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: timeEvent,
+      });
+    });
 
     const expectedActions = [
       {
@@ -138,10 +154,12 @@ describe('Tests time-event actions', () => {
     const userId = 'somePersonId';
     const templateId = 'someTemplateId';
 
-    nock(timeEventApi.basePath)
-      .post('/time-events/stop')
-      .query({ personId: userId, templateId })
-      .reply(404);
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+      });
+    });
 
     const expectedActions = [
       {

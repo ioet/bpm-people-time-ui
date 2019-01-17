@@ -1,4 +1,4 @@
-import { TimeEventControllerApi } from 'swagger_bpm_people_time_api';
+import axios from 'axios';
 import { getCurrentUserId } from '../login-page/login-selector';
 import { showMessage } from '../message-snackbar/message-actions';
 import EventErrorMessage from './time-event-const';
@@ -6,7 +6,11 @@ import { isTimeTemplateActive } from '../time-template/template-selector';
 
 export const SET_ACTIVE_TIME_EVENT = 'SET_ACTIVE_TIME_EVENT';
 
-const timeEventApi = new TimeEventControllerApi();
+const PEOPLE_TIME_API_PATH = '/time-events';
+const START_TIME_EVENT = '/start';
+const STOP_TIME_EVENT = '/stop';
+axios.defaults.baseURL = process.env.BPM_PEOPLE_TIME_API_URL;
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 export const setActiveTimeEvent = timeEvent => ({
   type: SET_ACTIVE_TIME_EVENT,
@@ -15,10 +19,15 @@ export const setActiveTimeEvent = timeEvent => ({
 
 export const startEvent = templateId => (
   (dispatch, getState) => {
-    const userId = getCurrentUserId(getState());
-    return timeEventApi.startTimeEventUsingPOST(userId, templateId)
-      .then((data) => {
-        dispatch(setActiveTimeEvent(data));
+    const personId = getCurrentUserId(getState());
+    return axios.post(PEOPLE_TIME_API_PATH + START_TIME_EVENT, null, {
+      params: {
+        personId,
+        templateId,
+      },
+    })
+      .then((response) => {
+        dispatch(setActiveTimeEvent(response.data));
       })
       .catch((error) => {
         dispatch(showMessage(EventErrorMessage.FAILED_TO_START_TIME_EVENT));
@@ -28,10 +37,14 @@ export const startEvent = templateId => (
 
 export const stopEvent = () => (
   (dispatch, getState) => {
-    const userId = getCurrentUserId(getState());
-    return timeEventApi.stopTimeEventUsingPOST(userId)
-      .then((data) => {
-        dispatch(setActiveTimeEvent(data));
+    const personId = getCurrentUserId(getState());
+    return axios.post(PEOPLE_TIME_API_PATH + STOP_TIME_EVENT, null, {
+      params: {
+        personId,
+      },
+    })
+      .then((response) => {
+        dispatch(setActiveTimeEvent(response.data));
       })
       .catch((error) => {
         dispatch(showMessage(EventErrorMessage.FAILED_TO_STOP_TIME_EVENT));

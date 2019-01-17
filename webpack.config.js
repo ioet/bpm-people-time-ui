@@ -9,7 +9,7 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 
 const environmentVariables = new webpack.DefinePlugin({
   'process.env': {
-    // SOME_ENVIRONMENT_VARIABLE: JSON.stringify(process.env.SOME_ENVIRONMENT_VARIABLE),
+    BPM_PEOPLE_TIME_API_URL: JSON.stringify(process.env.BPM_PEOPLE_TIME_API_URL),
   },
 });
 

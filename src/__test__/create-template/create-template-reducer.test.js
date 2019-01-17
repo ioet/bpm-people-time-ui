@@ -16,7 +16,7 @@ describe('create template reducer', () => {
   it('returns the initial state', () => {
     expect(createTemplate(undefined, initialStateAction)).toEqual({
       open: false,
-      createdTemplate: {},
+      templateToCreate: {},
     });
   });
 
@@ -49,7 +49,7 @@ describe('create template reducer', () => {
       value,
     };
     expect(createTemplate({}, setTextFieldDataAction)).toEqual({
-      createdTemplate: {
+      templateToCreate: {
         [field]: value,
       },
     });
@@ -60,7 +60,7 @@ describe('create template reducer', () => {
       type: CLEAR_TEXT_FIELDS,
     };
     expect(createTemplate({}, clearTextFieldDataAction)).toEqual({
-      createdTemplate: {},
+      templateToCreate: {},
     });
   });
 });

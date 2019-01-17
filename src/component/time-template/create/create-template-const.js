@@ -10,3 +10,7 @@ export const DialogContentConst = {
   TEMPLATE_ACTIVITY: 'templateActivity',
   TEMPLATE_ACTIVITY_LABEL: 'Activity',
 };
+
+export const CreateTemplateErrorMessage = {
+  CREATE_TEMPLATE_FAILED: 'Failed to create the template',
+};

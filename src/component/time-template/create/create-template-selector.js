@@ -1,5 +1,5 @@
 export const isCreateDialogOpen = state => state.createTemplate.open;
 
-export const getCreatedTemplate = state => state.createTemplate.createdTemplate;
+export const getTemplateToCreate = state => state.createTemplate.templateToCreate;
 
-export const getCreatedTemplateValue = (state, field) => state.createTemplate.createdTemplate[field];
+export const getTemplateToCreateValue = (state, field) => state.createTemplate.templateToCreate[field];

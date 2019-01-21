@@ -1,8 +1,9 @@
 # bpm-people-time-ui
 
-##Build Status and Code coverage
+## Build Status and Code coverage
 [![Build Status](https://travis-ci.com/ioet/bpm-people-time-ui.svg?branch=master)](https://travis-ci.com/ioet/bpm-people-time-ui)
 [![Code Coverage](https://codecov.io/gh/ioet/bpm-people-time-ui/branch/master/graph/badge.svg)](https://codecov.io/gh/ioet/bpm-people-time-ui)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ioet_bpm-people-time-ui&metric=alert_status)](https://sonarcloud.io/dashboard?id=ioet_bpm-people-time-ui)
 
 ## Run it locally
 Run this command and everything should be setup

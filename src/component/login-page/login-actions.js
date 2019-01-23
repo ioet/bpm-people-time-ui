@@ -3,9 +3,8 @@ import { LoginErrorMessage, LoginStateConst } from './login-const';
 import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
 import { getTimeTemplates } from '../time-template/template-actions';
-import { getPeopleApi } from '../axios/axios-instance';
+import peopleApi from '../axios/peopleApi';
 
-const peopleAPI = getPeopleApi();
 export const loginAction = (loginToken, userEmail, userId) => ({
   type: LoginAction.PERFORM_LOGIN,
   loginToken,
@@ -24,7 +23,7 @@ export const performLogin = (loginToken, userEmail, userId) => (
 );
 
 export const getUserIdByEmail = (loginToken, userEmail) => (
-  dispatch => peopleAPI.get('', {
+  dispatch => peopleApi.get('', {
     params: {
       email: userEmail,
     },

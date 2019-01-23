@@ -8,8 +8,9 @@ import { LoginErrorMessage } from '../login-const';
 const mapDispatchToProps = dispatch => ({
   googleResponseSuccessful: (response) => {
     const loginToken = response.tokenObj.id_token;
+    const userEmail = response.profileObj.email;
     if (response.profileObj.email.endsWith(GoogleLoginConst.IOET_DOMAIN)) {
-      dispatch(performLogin(loginToken));
+      dispatch(performLogin(loginToken, userEmail));
     } else {
       dispatch(showMessage(LoginErrorMessage.GOOGLE_ACCOUNT_NOT_PERMITTED));
     }

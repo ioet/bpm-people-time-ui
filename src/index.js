@@ -22,8 +22,9 @@ const store = createStore(
 
 const loginCookie = new Cookie(LoginStateConst.TOKEN_KEY);
 const emailCookie = new Cookie(LoginStateConst.USER_EMAIL);
-if (loginCookie.isStored() && emailCookie.isStored()) {
-  store.dispatch(performLogin(loginCookie.getValue(), emailCookie.getValue()));
+const userIdCookie = new Cookie(LoginStateConst.USER_ID);
+if (loginCookie.isStored() && emailCookie.isStored() && userIdCookie.isStored()) {
+  store.dispatch(performLogin(loginCookie.getValue(), emailCookie.getValue(), userIdCookie.getValue()));
 } else {
   store.dispatch(performLogout());
 }

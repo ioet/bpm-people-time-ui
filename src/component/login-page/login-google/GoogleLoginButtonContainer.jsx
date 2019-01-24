@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GoogleLoginButton from './GoogleLoginButton';
-import { getUserIdByEmail, loginFailed, performLogin } from '../login-actions';
+import { getUserIdByEmail, loginFailed } from '../login-actions';
 import GoogleLoginConst from './google-login-const';
 import { showMessage } from '../../message-snackbar/message-actions';
 import { LoginErrorMessage } from '../login-const';

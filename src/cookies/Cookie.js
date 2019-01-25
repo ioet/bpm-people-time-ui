@@ -21,7 +21,7 @@ class Cookie {
   }
 
   isStored() {
-    return this.getValue(this.name) !== null;
+    return this.getValue(this.name) !== null && this.getValue(this.name) !== 'undefined';
   }
 
   remove() {

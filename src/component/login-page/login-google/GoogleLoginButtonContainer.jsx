@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import GoogleLoginButton from './GoogleLoginButton';
-import { loginFailed, performLogin } from '../login-actions';
+import { getUserIdByEmail, loginFailed } from '../login-actions';
 import GoogleLoginConst from './google-login-const';
 import { showMessage } from '../../message-snackbar/message-actions';
 import { LoginErrorMessage } from '../login-const';
@@ -8,8 +8,9 @@ import { LoginErrorMessage } from '../login-const';
 const mapDispatchToProps = dispatch => ({
   googleResponseSuccessful: (response) => {
     const loginToken = response.tokenObj.id_token;
+    const userEmail = response.profileObj.email;
     if (response.profileObj.email.endsWith(GoogleLoginConst.IOET_DOMAIN)) {
-      dispatch(performLogin(loginToken));
+      dispatch(getUserIdByEmail(loginToken, userEmail));
     } else {
       dispatch(showMessage(LoginErrorMessage.GOOGLE_ACCOUNT_NOT_PERMITTED));
     }

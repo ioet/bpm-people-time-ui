@@ -1,4 +1,4 @@
-import moxios from 'moxios'
+import moxios from 'moxios';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expect from 'expect';
@@ -7,9 +7,19 @@ import LoginAction from '../../component/login-page/login-action-types';
 import { LoginErrorMessage } from '../../component/login-page/login-const';
 import MessageAction from '../../component/message-snackbar/message-action-types';
 import peopleApi from '../../component/axios/peopleApi';
+import { isUserLoggedIn } from '../../component/login-page/login-selector';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
+
+describe('Login Selectors', () => {
+  describe('isUserLoggedIn', () => {
+    it('should return login.authenticated as undefined', () => {
+      const selected = isUserLoggedIn.state;
+      expect(selected);
+    });
+  });
+});
 
 describe('login actions', () => {
   it('Creates an action to show an error on failure', () => {

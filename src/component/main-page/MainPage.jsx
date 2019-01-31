@@ -1,11 +1,11 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import TemplateListContainer from '../template-list/TemplateListContainer';
 import PageSplit from '../page-split/PageSplit';
+import TimeActiveContainer from "../time-active/TimeActiveContainer";
 
 const MainPage = () => (
   <PageSplit
-    left={<Paper>Left bar</Paper>}
+    left={<TimeActiveContainer/>}
     leftSize={4}
     right={<TemplateListContainer />}
     rightSize={8}

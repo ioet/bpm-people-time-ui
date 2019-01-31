@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
 import { PlayArrow, Stop } from '@material-ui/icons';
 import TimeTemplateStyles from './template-styles';
 import { TemplateConst } from './template-const';
 import PageSplit from '../page-split/PageSplit';
+import Fab from "@material-ui/core/Fab";
 
 const getSkillsList = (skills) => {
   let skillsString = '';
@@ -36,6 +36,7 @@ const TimeTemplate = (props) => {
   const buttonIcon = (active) ? <Stop /> : <PlayArrow />;
 
   return (
+
     <Card className={classes.timeTemplate}>
       <PageSplit
         left={(
@@ -56,8 +57,7 @@ const TimeTemplate = (props) => {
         )}
         leftSize={10}
         right={(
-          <Button
-            variant="fab"
+          <Fab
             color="secondary"
             onClick={(e) => {
               e.preventDefault();
@@ -65,7 +65,7 @@ const TimeTemplate = (props) => {
             }}
           >
             {buttonIcon}
-          </Button>
+          </Fab>
         )}
         rightSize={2}
         rightStyles={classes.buttonWrapperStyle}

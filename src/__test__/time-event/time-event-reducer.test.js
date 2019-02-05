@@ -17,13 +17,17 @@ describe('time-event reducer', () => {
     const timeEvent = {
       name: 'some name',
       activity: 'some activity',
+      start_time:23,
+      stop_time:24,
+      duration:1,
     };
+    const templateName='name';
     const setActiveTimeEventAction = {
       type: SET_ACTIVE_TIME_EVENT,
       timeEvent,
     };
     expect(reducer({}, setActiveTimeEventAction)).toEqual(
-      timeEvent,
+      timeEvent,templateName,
     );
   });
 });

@@ -44,8 +44,9 @@ describe('Tests async actions for time-events', () => {
     const timeEvent = {
       id: 'some id',
       activity: 'some activity',
+      template_id:templateId,
     };
-
+    const templateName='name';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -58,6 +59,7 @@ describe('Tests async actions for time-events', () => {
       {
         type: SET_ACTIVE_TIME_EVENT,
         timeEvent,
+        templateName,
       },
     ];
 
@@ -69,6 +71,11 @@ describe('Tests async actions for time-events', () => {
         template_id: templateId,
         stop_time: 'some time stamp',
       },
+      templateList: {
+        [templateId]:{
+          name: templateName
+        }
+      }
     });
 
     return store.dispatch(startOrStopEvent(templateId))
@@ -103,6 +110,11 @@ describe('Tests async actions for time-events', () => {
         template_id: templateId,
         stop_time: 'some time stamp',
       },
+      templateList: {
+        [templateId]:{
+          name: 'name'
+        }
+      }
     });
 
     return store.dispatch(startOrStopEvent(templateId))
@@ -117,8 +129,10 @@ describe('Tests async actions for time-events', () => {
     const timeEvent = {
       id: 'some id',
       activity: 'some activity',
-    };
+      template_id:templateId,
 
+    };
+    const templateName='name';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -131,6 +145,7 @@ describe('Tests async actions for time-events', () => {
       {
         type: SET_ACTIVE_TIME_EVENT,
         timeEvent,
+        templateName,
       },
     ];
 
@@ -142,6 +157,11 @@ describe('Tests async actions for time-events', () => {
         template_id: templateId,
         stop_time: null,
       },
+      templateList: {
+        [templateId]:{
+          name: templateName,
+        }
+      }
     });
 
     return store.dispatch(startOrStopEvent(templateId))

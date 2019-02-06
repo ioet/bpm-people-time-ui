@@ -74,7 +74,6 @@ class TimeActive extends React.Component {
       stop_time: stopTime,
     } = this.props.activeTimeEvent;
 
-    console.log('activeTimeEvent', this.props.activeTimeEvent);
     const buttonIcon = (stopTime == null) ? <Stop /> : <PlayArrow />;
     return (
       <div>

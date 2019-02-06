@@ -4,6 +4,7 @@ import { showMessage } from '../message-snackbar/message-actions';
 import EventErrorMessage from './time-event-const';
 import { getTimeTemplateNameById, isTimeTemplateActive } from '../time-template/template-selector';
 
+
 export const SET_ACTIVE_TIME_EVENT = 'SET_ACTIVE_TIME_EVENT';
 export const SET_ACTIVE_TIME_EVENT_DURATION = 'SET_ACTIVE_TIME_EVENT_DURATION';
 
@@ -34,6 +35,7 @@ export const getLastActiveTime = () => ((dispatch, getState) => {
   })
     .then((response) => {
       const templateName = getTimeTemplateNameById(getState(), response.data[0].template_id);
+
       dispatch(setActiveTimeEvent(response.data[0], templateName));
     })
     .catch((error) => {

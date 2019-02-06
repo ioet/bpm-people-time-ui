@@ -1,13 +1,13 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import {withStyles} from '@material-ui/core';
+import { withStyles } from '@material-ui/core';
 import TemplateListConst from './template-list-const';
 import TemplateListStyles from './template-list-styles';
 import TimeTemplateContainer from '../time-template/TimeTemplateContainer';
 
-const createTimeTemplate = template => <TimeTemplateContainer key={template.id} template={template}/>;
+const createTimeTemplate = template => <TimeTemplateContainer key={template.id} template={template} />;
 
 const createTimeTemplateList = (templateList) => {
   const timeTemplates = [];
@@ -18,7 +18,7 @@ const createTimeTemplateList = (templateList) => {
 };
 
 const TemplateList = (props) => {
-  const {classes, templateList, createNewTemplate} = props;
+  const { classes, templateList, createNewTemplate } = props;
 
   return (
     <Fragment>

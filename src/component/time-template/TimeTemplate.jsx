@@ -4,10 +4,10 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import { withStyles } from '@material-ui/core';
 import { PlayArrow, Stop } from '@material-ui/icons';
+import Fab from '@material-ui/core/Fab';
 import TimeTemplateStyles from './template-styles';
 import { TemplateConst } from './template-const';
 import PageSplit from '../page-split/PageSplit';
-import Fab from "@material-ui/core/Fab";
 
 const getSkillsList = (skills) => {
   let skillsString = '';

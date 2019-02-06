@@ -1,4 +1,4 @@
-import {SET_ACTIVE_TIME_EVENT, SET_ACTIVE_TIME_EVENT_DURATION} from './time-event-actions';
+import { SET_ACTIVE_TIME_EVENT, SET_ACTIVE_TIME_EVENT_DURATION } from './time-event-actions';
 
 const initializeDuration = (startTime, stopTime) => {
   let duration;
@@ -31,4 +31,3 @@ const timeEventReducer = (state = {}, action) => {
 };
 
 export default timeEventReducer;
-

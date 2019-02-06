@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {getCurrentUserId} from '../login-page/login-selector';
-import {showMessage} from '../message-snackbar/message-actions';
+import { getCurrentUserId } from '../login-page/login-selector';
+import { showMessage } from '../message-snackbar/message-actions';
 import EventErrorMessage from './time-event-const';
-import {getTimeTemplateNameById, isTimeTemplateActive} from '../time-template/template-selector';
+import { getTimeTemplateNameById, isTimeTemplateActive } from '../time-template/template-selector';
 
 export const SET_ACTIVE_TIME_EVENT = 'SET_ACTIVE_TIME_EVENT';
 export const SET_ACTIVE_TIME_EVENT_DURATION = 'SET_ACTIVE_TIME_EVENT_DURATION';
@@ -30,10 +30,10 @@ export const getLastActiveTime = () => ((dispatch, getState) => {
   return axios.get(PEOPLE_TIME_API_PATH, {
     params: {
       personId,
-    }
+    },
   })
-    .then(response => {
-      const templateName = getTimeTemplateNameById(getState(),response.data[0].template_id);
+    .then((response) => {
+      const templateName = getTimeTemplateNameById(getState(), response.data[0].template_id);
       dispatch(setActiveTimeEvent(response.data[0], templateName));
     })
     .catch((error) => {
@@ -51,7 +51,7 @@ export const startEvent = templateId => (
       },
     })
       .then((response) => {
-        const templateName = getTimeTemplateNameById(getState(),response.data.template_id);
+        const templateName = getTimeTemplateNameById(getState(), response.data.template_id);
         dispatch(setActiveTimeEvent(response.data, templateName));
       })
       .catch((error) => {
@@ -69,8 +69,8 @@ export const stopEvent = () => (
       },
     })
       .then((response) => {
-        const templateName = getTimeTemplateNameById(getState(),response.data.template_id);
-        dispatch(setActiveTimeEvent(response.data,templateName));
+        const templateName = getTimeTemplateNameById(getState(), response.data.template_id);
+        dispatch(setActiveTimeEvent(response.data, templateName));
       })
       .catch((error) => {
         dispatch(showMessage(EventErrorMessage.FAILED_TO_STOP_TIME_EVENT));

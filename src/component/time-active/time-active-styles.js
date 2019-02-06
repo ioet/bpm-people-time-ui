@@ -1,10 +1,10 @@
 const ActiveTimeStyles = theme => ({
 
   timeActiveTemplate: {
-    paddingTop:2,
+    paddingTop: 2,
     padding: theme.spacing.unit * 3,
     margin: theme.spacing.unit * 2,
-   },
+  },
   organizationAndProject: {
     marginTop: theme.spacing.unit,
     display: 'inline-block',
@@ -14,7 +14,7 @@ const ActiveTimeStyles = theme => ({
     marginLeft: theme.spacing.unit * 4,
     display: 'inline-block',
   },
-  dayAndMonth:{
+  dayAndMonth: {
     marginTop: theme.spacing.unit,
     marginLeft: theme.spacing.unit * 3,
     display: 'inline-block',

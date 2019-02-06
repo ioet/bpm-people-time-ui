@@ -1,9 +1,9 @@
-import {connect} from "react-redux";
-import TimeActive from "./TimeActive";
-import {getTimeEvent} from "../time-event/time-event-selector";
-import {setActiveTimeEventDuration, startOrStopEvent} from "../time-event/time-event-actions";
+import { connect } from 'react-redux';
+import TimeActive from './TimeActive';
+import { getTimeEvent } from '../time-event/time-event-selector';
+import { setActiveTimeEventDuration, startOrStopEvent } from '../time-event/time-event-actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   activeTimeEvent: getTimeEvent(state),
 });
 
@@ -14,6 +14,6 @@ const mapDispatchToProps = dispatch => ({
 
 const TimeActiveContainer = connect(
   mapStateToProps,
-  mapDispatchToProps)
-(TimeActive);
+  mapDispatchToProps,
+)(TimeActive);
 export default TimeActiveContainer;

@@ -8,6 +8,5 @@ phases:
   build:
     commands:
       - BPM_PEOPLE_API_URL=$BPM_PEOPLE_API_URL BPM_PEOPLE_TIME_API_URL=$BPM_PEOPLE_TIME_API_URL npm run build
-      - aws s3 mb bpm-deploy-people-time-ui
       - aws s3 sync dist/ s3://bpm-deploy-people-time-ui/ --delete
-  - echo "S3 Upload Complete"
+      - echo "S3 Upload Complete"

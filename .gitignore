@@ -116,5 +116,6 @@ build/
 react
 react-dom
 .scannerwork
+dist
 
 package-lock.json

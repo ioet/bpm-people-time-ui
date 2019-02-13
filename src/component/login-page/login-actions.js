@@ -4,6 +4,7 @@ import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
 import { getTimeTemplates } from '../time-template/template-actions';
 import peopleApi from '../axios/peopleApi';
+import { getLastActiveTime } from '../time-event/time-event-actions';
 
 export const loginAction = (loginToken, userEmail, userId) => ({
   type: LoginAction.PERFORM_LOGIN,
@@ -19,6 +20,7 @@ export const performLogin = (loginToken, userEmail, userId) => (
     new Cookie(LoginStateConst.USER_ID).setValue(userId, 1);
     dispatch(loginAction(loginToken, userEmail, userId));
     dispatch(getTimeTemplates());
+    dispatch(getLastActiveTime());
   }
 );
 

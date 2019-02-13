@@ -10,6 +10,7 @@ import { TemplateConst } from '../time-template/template-const';
 import PageSplit from '../page-split/PageSplit';
 import ActiveTimeStyles from './time-active-styles';
 import TemplateListConst from '../template-list/template-list-const';
+import TimeActiveConst from './time-active-const';
 
 class TimeActive extends React.Component {
   addLeadingZero(number) {
@@ -131,7 +132,10 @@ class TimeActive extends React.Component {
                 <Typography className={classes.skills} variant="body1">
                   {`${TemplateConst.SKILLS}: ${this.getSkillsList(skills)}`}
                 </Typography>
-                <TextField label="What did you do?" placeholder="Implemented some changes" />
+                <TextField
+                  label={TimeActiveConst.WHAT_DID_YOU_DO}
+                  placeholder={TimeActiveConst.IMPLEMENTED_SOME_CHANGES}
+                />
               </div>
             )}
             leftSize={8}

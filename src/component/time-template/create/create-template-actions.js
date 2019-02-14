@@ -3,7 +3,7 @@ import { removeAllTextFieldDataAndErrors } from '../../bpm-text-field/text-field
 import { addTimeTemplates } from '../template-actions';
 import { showMessage } from '../../message-snackbar/message-actions';
 import { CreateTemplateErrorMessage } from './create-template-const';
-import PeopleTimeApi from '../../apis/PeopleTimeApi';
+import PeopleTimeApi from '../../../apis/PeopleTimeApi';
 
 export const SHOW_CREATE_TEMPLATE_DIALOG = 'SHOW_CREATE_TEMPLATE_DIALOG';
 export const HIDE_CREATE_TEMPLATE_DIALOG = 'HIDE_CREATE_TEMPLATE_DIALOG';

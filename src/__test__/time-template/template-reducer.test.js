@@ -13,25 +13,6 @@ describe('templateListReducer reducer', () => {
     expect(templateListReducer({}, initialStateAction)).toEqual({});
   });
 
-  it('handles add template', () => {
-    const someTemplate = {
-      activity: 'development',
-      id: 'someId',
-      name: 'template name',
-      organization_id: 'ioet',
-      person_id: 'somePersonId',
-      project_id: 'bpm',
-    };
-
-    const addOneTemplateAction = {
-      type: TemplateAction.ADD_TEMPLATE,
-      template: someTemplate,
-    };
-    expect(templateListReducer({}, addOneTemplateAction)).toEqual({
-      [someTemplate.id]: someTemplate,
-    });
-  });
-
   it('handles add templates', () => {
     const someTemplate = {
       activity: 'development',
@@ -52,7 +33,7 @@ describe('templateListReducer reducer', () => {
 
     const addMultipleTemplatesAction = {
       type: TemplateAction.ADD_TEMPLATES,
-      template: [someTemplate, someOtherTemplate],
+      templates: [someTemplate, someOtherTemplate],
     };
 
     expect(templateListReducer({}, addMultipleTemplatesAction)).toEqual({

@@ -3,7 +3,7 @@ import { LoginErrorMessage, LoginStateConst } from './login-const';
 import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
 import { getTimeTemplates } from '../time-template/template-actions';
-import PeopleApi from '../apis/PeopleApi';
+import PeopleApi from '../../apis/PeopleApi';
 import { getLastActiveTime } from '../time-event/time-event-actions';
 import { getAllOrganizations } from '../time-template/create/organizations/organizations-actions';
 import { getAllProjects } from '../time-template/create/projects/projects-actions';

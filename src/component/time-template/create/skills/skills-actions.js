@@ -1,5 +1,5 @@
 import { showMessage } from '../../../message-snackbar/message-actions';
-import SkillsApi from '../../../apis/SkillsApi';
+import SkillsApi from '../../../../apis/SkillsApi';
 import { SkillsError } from './skills-constants';
 
 export const ADD_SKILLS = 'ADD_SKILLS';

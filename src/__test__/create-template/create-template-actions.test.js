@@ -60,13 +60,16 @@ describe('Testing async actions to create a template', () => {
   });
 
   it('When submitting the dialog actions to close the dialog and to add a template are dispatched', () => {
+    const userId = 'somePersonId';
+    const organizationId = 'organizationId';
+    const organizationName = 'Organization Name';
     const postTemplateMock = {
       activity: 'some activity',
       id: 'someId',
       name: 'User Name',
-      organization_id: 'organizationId',
-      organization_name: 'organization name',
-      person_id: 'personId',
+      organization_id: organizationId,
+      organization_name: organizationName,
+      person_id: userId,
       project_id: 'projectId',
       project_name: 'project name',
       skills: [
@@ -78,8 +81,8 @@ describe('Testing async actions to create a template', () => {
     };
     const expectedAction = [
       {
-        type: TemplateAction.ADD_TEMPLATE,
-        template: postTemplateMock,
+        type: TemplateAction.ADD_TEMPLATES,
+        templates: [postTemplateMock],
       },
       {
         type: HIDE_CREATE_TEMPLATE_DIALOG,
@@ -102,6 +105,16 @@ describe('Testing async actions to create a template', () => {
         templateToCreate: {
           name: 'someName',
           activity: 'someActivity',
+          organization_id: organizationId,
+          skills: [],
+        },
+      },
+      login: {
+        userId,
+      },
+      organizationsList: {
+        [organizationId]: {
+          name: organizationName,
         },
       },
     });

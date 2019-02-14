@@ -1,6 +1,6 @@
 import { showMessage } from '../../../message-snackbar/message-actions';
 import { ProjectsError } from './projects-constants';
-import ProjectsApi from '../../../apis/ProjectsApi';
+import ProjectsApi from '../../../../apis/ProjectsApi';
 
 export const ADD_PROJECTS = 'ADD_PROJECTS';
 

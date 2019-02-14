@@ -1,7 +1,7 @@
 import { getCurrentUserId } from '../login-page/login-selector';
 import { showMessage } from '../message-snackbar/message-actions';
 import EventErrorMessage from './time-event-const';
-import PeopleTimeApi from '../apis/PeopleTimeApi';
+import PeopleTimeApi from '../../apis/PeopleTimeApi';
 import { getTimeTemplateNameById, isTimeTemplateActive } from '../time-template/template-selector';
 
 

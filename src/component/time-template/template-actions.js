@@ -2,7 +2,7 @@ import { showMessage } from '../message-snackbar/message-actions';
 import TemplateAction from './template-action-types';
 import { TemplateErrorMessage } from './template-const';
 import { getCurrentUserId } from '../login-page/login-selector';
-import PeopleTimeApi from '../apis/PeopleTimeApi';
+import PeopleTimeApi from '../../apis/PeopleTimeApi';
 
 export const addTimeTemplates = templates => ({
   type: TemplateAction.ADD_TEMPLATES,

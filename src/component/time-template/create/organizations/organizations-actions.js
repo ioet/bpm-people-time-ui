@@ -1,5 +1,5 @@
 import { showMessage } from '../../../message-snackbar/message-actions';
-import OrganizationsApi from '../../../apis/OrganizationsApi';
+import OrganizationsApi from '../../../../apis/OrganizationsApi';
 import { OrganizationsError } from './organizations-constants';
 
 export const ADD_ORGANIZATIONS = 'ADD_ORGANIZATIONS';

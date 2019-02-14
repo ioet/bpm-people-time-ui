@@ -6,6 +6,7 @@ import {
   SET_ACTIVE_TIME_EVENT,
   setActiveTimeEvent,
   startOrStopEvent,
+  getLastActiveTime,
 } from '../../component/time-event/time-event-actions';
 import MessageAction from '../../component/message-snackbar/message-action-types';
 import EventErrorMessage from '../../component/time-event/time-event-const';
@@ -24,7 +25,6 @@ describe('Tests time-event actions', () => {
       type: SET_ACTIVE_TIME_EVENT,
       timeEvent,
     };
-
     expect(setActiveTimeEvent(timeEvent)).toEqual(expectedActions);
   });
 });
@@ -44,8 +44,9 @@ describe('Tests async actions for time-events', () => {
     const timeEvent = {
       id: 'some id',
       activity: 'some activity',
+      template_id: templateId,
     };
-
+    const templateName = 'name';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -58,6 +59,7 @@ describe('Tests async actions for time-events', () => {
       {
         type: SET_ACTIVE_TIME_EVENT,
         timeEvent,
+        templateName,
       },
     ];
 
@@ -68,6 +70,11 @@ describe('Tests async actions for time-events', () => {
       timeEvent: {
         template_id: templateId,
         stop_time: 'some time stamp',
+      },
+      templateList: {
+        [templateId]: {
+          name: templateName,
+        },
       },
     });
 
@@ -103,6 +110,11 @@ describe('Tests async actions for time-events', () => {
         template_id: templateId,
         stop_time: 'some time stamp',
       },
+      templateList: {
+        [templateId]: {
+          name: 'name',
+        },
+      },
     });
 
     return store.dispatch(startOrStopEvent(templateId))
@@ -117,8 +129,10 @@ describe('Tests async actions for time-events', () => {
     const timeEvent = {
       id: 'some id',
       activity: 'some activity',
-    };
+      template_id: templateId,
 
+    };
+    const templateName = 'name';
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -131,6 +145,7 @@ describe('Tests async actions for time-events', () => {
       {
         type: SET_ACTIVE_TIME_EVENT,
         timeEvent,
+        templateName,
       },
     ];
 
@@ -141,6 +156,11 @@ describe('Tests async actions for time-events', () => {
       timeEvent: {
         template_id: templateId,
         stop_time: null,
+      },
+      templateList: {
+        [templateId]: {
+          name: templateName,
+        },
       },
     });
 
@@ -179,6 +199,76 @@ describe('Tests async actions for time-events', () => {
     });
 
     return store.dispatch(startOrStopEvent(templateId))
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
+  it('get the last active time', () => {
+    const userId = 'somePersonId';
+    const templateId = 'someTemplateId';
+    const templateName = 'name';
+    const timeEvent = {
+      id: 'some id',
+      activity: 'some activity',
+      template_id: templateId,
+    };
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: [timeEvent],
+      });
+    });
+
+    const expectedActions = [
+      {
+        type: SET_ACTIVE_TIME_EVENT,
+        timeEvent,
+        templateName,
+      },
+    ];
+
+    const store = mockStore({
+      login: {
+        userId,
+      },
+      templateList: {
+        [templateId]: {
+          name: templateName,
+        },
+      },
+    });
+
+    return store.dispatch(getLastActiveTime())
+      .then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+  });
+  it('failed to get the last active time ', () => {
+    const userId = 'somePersonId';
+
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 404,
+      });
+    });
+
+    const expectedActions = [
+      {
+        type: MessageAction.SHOW_MESSAGE,
+        message: EventErrorMessage.FAILED_TO_GET_ACTIVE_TIME_EVENT,
+      },
+    ];
+
+    const store = mockStore({
+      login: {
+        userId,
+      },
+    });
+
+    return store.dispatch(getLastActiveTime())
       .then(() => {
         expect(store.getActions()).toEqual(expectedActions);
       });

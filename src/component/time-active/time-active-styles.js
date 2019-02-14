@@ -1,6 +1,8 @@
-const TimeTemplateStyles = theme => ({
-  timeTemplate: {
-    padding: theme.spacing.unit * 2,
+const ActiveTimeStyles = theme => ({
+
+  timeActiveTemplate: {
+    paddingTop: 2,
+    padding: theme.spacing.unit * 3,
     margin: theme.spacing.unit * 2,
   },
   organizationAndProject: {
@@ -12,14 +14,19 @@ const TimeTemplateStyles = theme => ({
     marginLeft: theme.spacing.unit * 4,
     display: 'inline-block',
   },
+  dayAndMonth: {
+    marginTop: theme.spacing.unit,
+    marginLeft: theme.spacing.unit * 3,
+    display: 'inline-block',
+  },
   skills: {
     marginTop: theme.spacing.unit,
   },
-  buttonWrapperStyle: {
+  currentlyActiveTimeEvent: {
+    color: theme.palette.secondary[500],
     textAlign: 'center',
     margin: 'auto',
   },
-
 });
 
-export default TimeTemplateStyles;
+export default ActiveTimeStyles;

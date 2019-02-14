@@ -18,7 +18,7 @@ const App = () => (
       </div>
     </Router>
     <MessageSnackbarContainer />
-    <CreateTemplateDialogContainer/>
+    <CreateTemplateDialogContainer />
   </div>
 );
 

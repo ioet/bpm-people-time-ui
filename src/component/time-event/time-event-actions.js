@@ -1,19 +1,12 @@
-import axios from 'axios';
 import { getCurrentUserId } from '../login-page/login-selector';
 import { showMessage } from '../message-snackbar/message-actions';
 import EventErrorMessage from './time-event-const';
+import PeopleTimeApi from '../apis/PeopleTimeApi';
 import { getTimeTemplateNameById, isTimeTemplateActive } from '../time-template/template-selector';
 
 
 export const SET_ACTIVE_TIME_EVENT = 'SET_ACTIVE_TIME_EVENT';
 export const SET_ACTIVE_TIME_EVENT_DURATION = 'SET_ACTIVE_TIME_EVENT_DURATION';
-
-
-const PEOPLE_TIME_API_PATH = '/time-events';
-const START_TIME_EVENT = '/start';
-const STOP_TIME_EVENT = '/stop';
-axios.defaults.baseURL = process.env.BPM_PEOPLE_TIME_API_URL;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 export const setActiveTimeEvent = (timeEvent, templateName) => ({
   type: SET_ACTIVE_TIME_EVENT,
@@ -28,11 +21,7 @@ export const setActiveTimeEventDuration = duration => ({
 
 export const getLastActiveTime = () => ((dispatch, getState) => {
   const personId = getCurrentUserId(getState());
-  return axios.get(PEOPLE_TIME_API_PATH, {
-    params: {
-      personId,
-    },
-  })
+  return new PeopleTimeApi().getLastActiveTime(personId)
     .then((response) => {
       const templateName = getTimeTemplateNameById(getState(), response.data[0].template_id);
 
@@ -46,12 +35,7 @@ export const getLastActiveTime = () => ((dispatch, getState) => {
 export const startEvent = templateId => (
   (dispatch, getState) => {
     const personId = getCurrentUserId(getState());
-    return axios.post(PEOPLE_TIME_API_PATH + START_TIME_EVENT, null, {
-      params: {
-        personId,
-        templateId,
-      },
-    })
+    return new PeopleTimeApi().startTimeEvent(personId, templateId)
       .then((response) => {
         const templateName = getTimeTemplateNameById(getState(), response.data.template_id);
         dispatch(setActiveTimeEvent(response.data, templateName));
@@ -65,11 +49,7 @@ export const startEvent = templateId => (
 export const stopEvent = () => (
   (dispatch, getState) => {
     const personId = getCurrentUserId(getState());
-    return axios.post(PEOPLE_TIME_API_PATH + STOP_TIME_EVENT, null, {
-      params: {
-        personId,
-      },
-    })
+    return new PeopleTimeApi().stopTimeEvent(personId)
       .then((response) => {
         const templateName = getTimeTemplateNameById(getState(), response.data.template_id);
         dispatch(setActiveTimeEvent(response.data, templateName));

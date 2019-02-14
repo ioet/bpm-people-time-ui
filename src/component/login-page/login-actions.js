@@ -3,8 +3,11 @@ import { LoginErrorMessage, LoginStateConst } from './login-const';
 import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
 import { getTimeTemplates } from '../time-template/template-actions';
-import peopleApi from '../axios/peopleApi';
+import PeopleApi from '../apis/PeopleApi';
 import { getLastActiveTime } from '../time-event/time-event-actions';
+import { getAllOrganizations } from '../time-template/create/organizations/organizations-actions';
+import { getAllProjects } from '../time-template/create/projects/projects-actions';
+import { getAllSkills } from '../time-template/create/skills/skills-actions';
 
 export const loginAction = (loginToken, userEmail, userId) => ({
   type: LoginAction.PERFORM_LOGIN,
@@ -21,15 +24,14 @@ export const performLogin = (loginToken, userEmail, userId) => (
     dispatch(loginAction(loginToken, userEmail, userId));
     dispatch(getTimeTemplates());
     dispatch(getLastActiveTime());
+    dispatch(getAllOrganizations());
+    dispatch(getAllProjects());
+    dispatch(getAllSkills());
   }
 );
 
 export const getUserIdByEmail = (loginToken, userEmail) => (
-  dispatch => peopleApi.get('', {
-    params: {
-      email: userEmail,
-    },
-  })
+  dispatch => new PeopleApi().getUserByEmail(userEmail)
     .then((response) => {
       const userId = response.data[0].id;
       dispatch(performLogin(loginToken, userEmail, userId));

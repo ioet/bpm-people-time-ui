@@ -10,7 +10,10 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 const environmentVariables = new webpack.DefinePlugin({
   'process.env': {
     BPM_PEOPLE_API_URL: JSON.stringify(process.env.BPM_PEOPLE_API_URL),
+    BPM_ORGANIZATIONS_API_URL: JSON.stringify(process.env.BPM_ORGANIZATIONS_API_URL),
     BPM_PEOPLE_TIME_API_URL: JSON.stringify(process.env.BPM_PEOPLE_TIME_API_URL),
+    BPM_PROJECTS_API_URL: JSON.stringify(process.env.BPM_PROJECTS_API_URL),
+    BPM_SKILLS_API_URL: JSON.stringify(process.env.BPM_SKILLS_API_URL),
   },
 });
 

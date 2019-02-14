@@ -1,5 +1,9 @@
-import { HIDE_CREATE_TEMPLATE_DIALOG, SHOW_CREATE_TEMPLATE_DIALOG } from './create-template-actions';
-import { CLEAR_TEXT_FIELDS, SET_TEXT_FIELD_DATA } from '../../bpm-text-field/text-field-actions';
+import {
+  EDIT_CREATE_TEMPLATE_DATA,
+  HIDE_CREATE_TEMPLATE_DIALOG,
+  SHOW_CREATE_TEMPLATE_DIALOG,
+} from './create-template-actions';
+import { CLEAR_TEXT_FIELDS } from '../../bpm-text-field/text-field-actions';
 
 export const createTemplateReducer = (state = { open: false, templateToCreate: {} }, action) => {
   switch (action.type) {
@@ -13,7 +17,7 @@ export const createTemplateReducer = (state = { open: false, templateToCreate: {
         ...state,
         open: false,
       };
-    case SET_TEXT_FIELD_DATA:
+    case EDIT_CREATE_TEMPLATE_DATA:
       return {
         ...state,
         templateToCreate: {

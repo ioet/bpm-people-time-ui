@@ -5,6 +5,9 @@ import templateList from './component/time-template/template-reducer';
 import createTemplate from './component/time-template/create/create-template-reducer';
 import textFields from './component/bpm-text-field/text-field-reducer';
 import timeEvent from './component/time-event/time-event-reducer';
+import organizationsList from './component/time-template/create/organizations/organizations-reducer';
+import projectsList from './component/time-template/create/projects/projects-reducer';
+import skillsList from './component/time-template/create/skills/skills-reducer';
 
 const rootReducer = combineReducers({
   login,
@@ -13,6 +16,9 @@ const rootReducer = combineReducers({
   createTemplate,
   textFields,
   timeEvent,
+  organizationsList,
+  projectsList,
+  skillsList,
 });
 
 export default rootReducer;

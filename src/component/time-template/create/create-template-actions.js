@@ -1,19 +1,22 @@
-import axios from 'axios';
 import { getTemplateToCreate } from './create-template-selector';
 import { removeAllTextFieldDataAndErrors } from '../../bpm-text-field/text-field-actions';
-import { addTimeTemplate } from '../template-actions';
+import { addTimeTemplates } from '../template-actions';
 import { showMessage } from '../../message-snackbar/message-actions';
 import { CreateTemplateErrorMessage } from './create-template-const';
+import PeopleTimeApi from '../../apis/PeopleTimeApi';
 
 export const SHOW_CREATE_TEMPLATE_DIALOG = 'SHOW_CREATE_TEMPLATE_DIALOG';
 export const HIDE_CREATE_TEMPLATE_DIALOG = 'HIDE_CREATE_TEMPLATE_DIALOG';
-
-const PEOPLE_TIME_API_PATH = '/time-templates';
-axios.defaults.baseURL = process.env.BPM_PEOPLE_TIME_API_URL;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+export const EDIT_CREATE_TEMPLATE_DATA = 'EDIT_CREATE_TEMPLATE_DATA';
 
 export const showCreateDialog = () => ({
   type: SHOW_CREATE_TEMPLATE_DIALOG,
+});
+
+export const setCreateTemplateData = (field, value) => ({
+  type: EDIT_CREATE_TEMPLATE_DATA,
+  field,
+  value,
 });
 
 export const hideCreateDialog = () => ({
@@ -24,11 +27,9 @@ export const createTimeTemplate = () => (
   (dispatch, getState) => {
     const template = getTemplateToCreate(getState());
 
-    return axios.post(PEOPLE_TIME_API_PATH, {
-      ...template,
-    })
+    return new PeopleTimeApi().createTimeTemplate(template)
       .then((response) => {
-        dispatch(addTimeTemplate(response.data));
+        dispatch(addTimeTemplates([response.data]));
         dispatch(hideCreateDialog());
         dispatch(removeAllTextFieldDataAndErrors());
       })
@@ -39,7 +40,9 @@ export const createTimeTemplate = () => (
   }
 );
 
+// TODO validate templates
 export const isTemplateDataValid = template => true;
+
 export const closeCreateTemplateDialog = confirmed => (
   (dispatch, getState) => {
     if (confirmed) {

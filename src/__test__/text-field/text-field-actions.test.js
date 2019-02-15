@@ -1,14 +1,16 @@
 import expect from 'expect';
 import {
   CLEAR_TEXT_FIELDS,
-  REMOVE_INPUT_ERROR,
-  removeAllTextFieldDataAndErrors,
+  REMOVE_INPUT_ERROR, removeAllInputErrors,
+  removeAllTextFieldData,
   removeInputError,
   SET_INPUT_ERROR,
-  SET_TEXT_FIELD_DATA,
   setInputError,
-  setTextFieldData,
 } from '../../component/bpm-text-field/text-field-actions';
+import {
+  EDIT_CREATE_TEMPLATE_DATA,
+  setCreateTemplateData
+} from '../../component/time-template/create/create-template-actions';
 
 describe('Tests text field actions', () => {
   it('Creates an action to update template creation data', () => {
@@ -16,12 +18,13 @@ describe('Tests text field actions', () => {
     const value = 'fieldValue';
 
     const expectedAction = {
-      type: SET_TEXT_FIELD_DATA,
+      type: EDIT_CREATE_TEMPLATE_DATA,
       field,
       value,
     };
 
-    expect(setTextFieldData(field, value)).toEqual(expectedAction);
+    expect(setCreateTemplateData(field, value))
+      .toEqual(expectedAction);
   });
 
   it('Creates an action to set an input error on a specified field', () => {
@@ -32,18 +35,8 @@ describe('Tests text field actions', () => {
       field,
     };
 
-    expect(setInputError(field)).toEqual(expectedAction);
-  });
-
-  it('Creates an action to remove an input error on a specified field', () => {
-    const field = 'fieldName';
-
-    const expectedAction = {
-      type: REMOVE_INPUT_ERROR,
-      field,
-    };
-
-    expect(removeInputError(field)).toEqual(expectedAction);
+    expect(setInputError(field))
+      .toEqual(expectedAction);
   });
 
   it('Creates an action to remove input errors and data on all fields', () => {
@@ -51,6 +44,7 @@ describe('Tests text field actions', () => {
       type: CLEAR_TEXT_FIELDS,
     };
 
-    expect(removeAllTextFieldDataAndErrors()).toEqual(expectedAction);
+    expect(removeAllTextFieldData())
+      .toEqual(expectedAction);
   });
 });

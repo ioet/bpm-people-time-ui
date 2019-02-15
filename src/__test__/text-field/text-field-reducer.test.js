@@ -1,10 +1,6 @@
 import expect from 'expect';
 import reducer from '../../component/bpm-text-field/text-field-reducer';
-import {
-  CLEAR_TEXT_FIELDS,
-  REMOVE_INPUT_ERROR,
-  SET_INPUT_ERROR,
-} from '../../component/bpm-text-field/text-field-actions';
+import { REMOVE_ALL_INPUT_ERRORS, SET_INPUT_ERROR, } from '../../component/bpm-text-field/text-field-actions';
 
 const INITIAL_STATE = '@@INIT';
 
@@ -33,27 +29,12 @@ describe('text field reducer', () => {
     });
   });
 
-  it('handles remove input error', () => {
-    const field = 'someField';
-
-    const removeInputErrorAction = {
-      type: REMOVE_INPUT_ERROR,
-      field,
-    };
-
-    expect(reducer({}, removeInputErrorAction)).toEqual({
-      createdTemplateError: {
-        [field]: false,
-      },
-    });
-  });
-
   it('handles clear text fields and removes all errors', () => {
-    const clearTextFieldsAction = {
-      type: CLEAR_TEXT_FIELDS,
+    const removeAllInputErrors = {
+      type: REMOVE_ALL_INPUT_ERRORS,
     };
 
-    expect(reducer({}, clearTextFieldsAction)).toEqual({
+    expect(reducer({}, removeAllInputErrors)).toEqual({
       createdTemplateError: {},
     });
   });

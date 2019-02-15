@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import BpmTextField from './BpmTextField';
-import { setTextFieldData } from './text-field-actions';
 import { getInputError } from './text-field-selector';
 import { getTemplateToCreateValue } from '../time-template/create/create-template-selector';
+import { setCreateTemplateData } from '../time-template/create/create-template-actions';
 
 const mapStateToProps = (state, ownProps) => ({
   name: ownProps.name,
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => ({
   onChange: (event) => {
-    dispatch(setTextFieldData(event.target.name, event.target.value));
+    dispatch(setCreateTemplateData(event.target.name, event.target.value));
   },
 });
 

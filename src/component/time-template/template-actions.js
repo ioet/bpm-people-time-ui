@@ -1,31 +1,18 @@
-import axios from 'axios';
 import { showMessage } from '../message-snackbar/message-actions';
 import TemplateAction from './template-action-types';
 import { TemplateErrorMessage } from './template-const';
 import { getCurrentUserId } from '../login-page/login-selector';
+import PeopleTimeApi from '../../apis/PeopleTimeApi';
 
-const PEOPLE_TIME_API_PATH = '/time-templates';
-axios.defaults.baseURL = process.env.BPM_PEOPLE_TIME_API_URL;
-axios.defaults.headers.common['Content-Type'] = 'application/json';
-
-export const addTimeTemplate = template => ({
-  type: TemplateAction.ADD_TEMPLATE,
-  template,
-});
-
-export const addTimeTemplates = template => ({
+export const addTimeTemplates = templates => ({
   type: TemplateAction.ADD_TEMPLATES,
-  template,
+  templates,
 });
 
 export const getTimeTemplates = () => (
   (dispatch, getState) => {
     const personId = getCurrentUserId(getState());
-    return axios.get(PEOPLE_TIME_API_PATH, {
-      params: {
-        personId,
-      },
-    })
+    return new PeopleTimeApi().getTimeTemplatesForUser(personId)
       .then((response) => {
         dispatch(addTimeTemplates(response.data));
       })

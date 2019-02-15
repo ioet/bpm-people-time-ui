@@ -8,9 +8,11 @@ import Fab from '@material-ui/core/Fab';
 import TimeTemplateStyles from './template-styles';
 import { TemplateConst } from './template-const';
 import PageSplit from '../page-split/PageSplit';
+import createActivityList from './create/activities/ActivityList';
 
-const getSkillsList = (skills) => {
+const getSkillsList = (skills = []) => {
   let skillsString = '';
+  if (skills == null) return skillsString;
   for (let i = 0; i < skills.length; i++) {
     if (skillsString.length === 0) {
       skillsString += skills[i].name;
@@ -32,6 +34,7 @@ const TimeTemplate = (props) => {
     activity,
     skills,
   } = template;
+  const activityName = (typeof createActivityList()[activity] === 'undefined') ? '' : createActivityList()[activity].name;
 
   const buttonIcon = (active) ? <Stop /> : <PlayArrow />;
 
@@ -48,7 +51,7 @@ const TimeTemplate = (props) => {
               {`${organizationName} > ${projectName}`}
             </Typography>
             <Typography className={classes.activity} variant="body1">
-              {`${TemplateConst.ACTIVITY}: ${activity}`}
+              {`${TemplateConst.ACTIVITY}: ${activityName}`}
             </Typography>
             <Typography className={classes.skills} variant="body1">
               {`${TemplateConst.SKILLS}: ${getSkillsList(skills)}`}

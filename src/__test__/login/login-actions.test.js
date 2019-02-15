@@ -8,7 +8,7 @@ import {
 import LoginAction from '../../component/login-page/login-action-types';
 import { LoginErrorMessage } from '../../component/login-page/login-const';
 import MessageAction from '../../component/message-snackbar/message-action-types';
-import peopleApi from '../../component/axios/peopleApi';
+import peopleApi from '../../apis/PeopleApi';
 import { isUserLoggedIn } from '../../component/login-page/login-selector';
 
 const middlewares = [thunk];
@@ -57,11 +57,11 @@ describe('login actions', () => {
 
 describe('Test async login actions', () => {
   beforeEach(() => {
-    moxios.install(peopleApi);
+    moxios.install();
   });
 
   afterEach(() => {
-    moxios.uninstall(peopleApi);
+    moxios.uninstall();
   });
 
   it('Creates an action to perform the login', () => {

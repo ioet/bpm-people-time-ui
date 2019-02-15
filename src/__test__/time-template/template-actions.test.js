@@ -67,7 +67,7 @@ describe('Test async template actions', () => {
     const expectedActions = [
       {
         type: TemplateAction.ADD_TEMPLATES,
-        template: getTemplatesMock,
+        templates: getTemplatesMock,
       },
     ];
 

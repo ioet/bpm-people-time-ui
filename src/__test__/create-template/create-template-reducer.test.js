@@ -1,10 +1,11 @@
 import expect from 'expect';
 import {
+  EDIT_CREATE_TEMPLATE_DATA,
   HIDE_CREATE_TEMPLATE_DIALOG,
   SHOW_CREATE_TEMPLATE_DIALOG,
 } from '../../component/time-template/create/create-template-actions';
 import createTemplate from '../../component/time-template/create/create-template-reducer';
-import { CLEAR_TEXT_FIELDS, SET_TEXT_FIELD_DATA } from '../../component/bpm-text-field/text-field-actions';
+import { CLEAR_TEXT_FIELDS } from '../../component/bpm-text-field/text-field-actions';
 
 const INITIAL_STATE = '@@INIT';
 
@@ -44,7 +45,7 @@ describe('create template reducer', () => {
     const value = 'some value';
 
     const setTextFieldDataAction = {
-      type: SET_TEXT_FIELD_DATA,
+      type: EDIT_CREATE_TEMPLATE_DATA,
       field,
       value,
     };

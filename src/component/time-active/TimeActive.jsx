@@ -11,6 +11,7 @@ import PageSplit from '../page-split/PageSplit';
 import ActiveTimeStyles from './time-active-styles';
 import TemplateListConst from '../template-list/template-list-const';
 import TimeActiveConst from './time-active-const';
+import createActivityList from '../time-template/create/activities/ActivityList';
 
 class TimeActive extends React.Component {
   addLeadingZero(number) {
@@ -19,6 +20,7 @@ class TimeActive extends React.Component {
 
   getSkillsList(skills = []) {
     let skillsString = '';
+    if (skills == null) return skillsString;
     for (let i = 0; i < skills.length; i++) {
       if (skillsString.length === 0) {
         skillsString += skills[i].name;
@@ -74,6 +76,7 @@ class TimeActive extends React.Component {
       template_id: templateId,
       stop_time: stopTime,
     } = this.props.activeTimeEvent;
+    const activityName = (typeof activity === 'undefined') ? '' : createActivityList()[activity].name;
 
     const buttonIcon = (stopTime == null) ? <Stop /> : <PlayArrow />;
     return (
@@ -124,7 +127,7 @@ class TimeActive extends React.Component {
                   {`${organizationName} > ${projectName}`}
                 </Typography>
                 <Typography className={classes.activity} variant="body1">
-                  {`${TemplateConst.ACTIVITY}: ${activity}`}
+                  {`${TemplateConst.ACTIVITY}: ${activityName}`}
                 </Typography>
                 <Typography variant="h3">
                   {this.formatDuration(this.props.activeTimeEvent.duration)}

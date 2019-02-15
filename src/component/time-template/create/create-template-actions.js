@@ -47,12 +47,17 @@ export const isTemplateDataValid = (dispatch, template) => {
   const errorMessages = Object.values(DialogContentFieldErros);
 
   const inputValidator = new InputValidator();
-  for (let i = 0; i < fieldNames.length; i++) {
+  for (let i = 0; i < fieldNames.length - 1; i++) {
     if (!inputValidator.isValidStringInput(template[fieldNames[i]])) {
       dispatch(showMessage(errorMessages[i]));
       dispatch(setInputError(fieldNames[i]));
       return false;
     }
+  }
+  if (!inputValidator.isValidArrayWithAtLeastOneEntry(template[DialogContentFieldNames.TEMPLATE_SKILLS])) {
+    dispatch(showMessage(DialogContentFieldErros.TEMPLATE_SKILLS));
+    dispatch(setInputError(DialogContentFieldNames.TEMPLATE_SKILLS));
+    return false;
   }
   return true;
 };

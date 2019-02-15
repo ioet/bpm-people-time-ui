@@ -34,7 +34,7 @@ const TimeTemplate = (props) => {
     activity,
     skills,
   } = template;
-  const activityName = (typeof activity === 'undefined') ? '' : createActivityList()[activity].name;
+  const activityName = (typeof createActivityList()[activity] === 'undefined') ? '' : createActivityList()[activity].name;
 
   const buttonIcon = (active) ? <Stop /> : <PlayArrow />;
 

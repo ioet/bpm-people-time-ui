@@ -1,7 +1,7 @@
 import { ADD_PROJECTS } from './projects-actions';
 import { arrayToObject } from '../../template-reducer';
 
-const projectsList = (state = {}, action) => {
+const projectsList = (state = { projects: { id: 'enable-cors', name: 'enable CORS' } }, action) => {
   switch (action.type) {
     case ADD_PROJECTS:
       return {

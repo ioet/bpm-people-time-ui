@@ -12,14 +12,11 @@ import {
 import {
   CLEAR_TEXT_FIELDS,
   REMOVE_ALL_INPUT_ERRORS,
-  SET_INPUT_ERROR
+  SET_INPUT_ERROR,
 } from '../../component/bpm-text-field/text-field-actions';
 import TemplateAction from '../../component/time-template/template-action-types';
 import MessageAction from '../../component/message-snackbar/message-action-types';
-import {
-  CreateTemplateErrorMessage,
-  DialogContentFieldErros
-} from '../../component/time-template/create/create-template-const';
+import { DialogContentFieldErros } from '../../component/time-template/create/create-template-const';
 
 
 const middlewares = [thunk];
@@ -109,6 +106,8 @@ describe('Testing async actions to create a template', () => {
     const organizationName = 'Organization Name';
     const projectId = 'projectId';
     const projectName = 'project name';
+    const skillsId = 'skillsId';
+    const skillsName = 'skills name';
     const postTemplateMock = {
       activity: 'some activity',
       id: 'someId',
@@ -120,8 +119,8 @@ describe('Testing async actions to create a template', () => {
       project_name: projectName,
       skills: [
         {
-          id: 'skillId',
-          name: 'skill name',
+          id: skillsId,
+          name: skillsName,
         },
       ],
     };
@@ -156,7 +155,9 @@ describe('Testing async actions to create a template', () => {
           activity: 'someActivity',
           organization_id: organizationId,
           project_id: projectId,
-          skills: [],
+          skills: [
+            skillsId,
+          ],
         },
       },
       login: {
@@ -170,6 +171,11 @@ describe('Testing async actions to create a template', () => {
       projectsList: {
         [projectId]: {
           name: projectName,
+        },
+      },
+      skillsList: {
+        [skillsId]: {
+          name: skillsName,
         },
       },
     });
@@ -187,22 +193,6 @@ describe('Testing async actions to create a template', () => {
     const organizationName = 'Organization Name';
     const projectId = 'projectId';
     const projectName = 'project name';
-    const expectedAction = [
-      {
-        type: REMOVE_ALL_INPUT_ERRORS,
-      },
-      {
-        type: MessageAction.SHOW_MESSAGE,
-        message: CreateTemplateErrorMessage.CREATE_TEMPLATE_FAILED,
-      },
-    ];
-
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 400,
-      });
-    });
 
     const store = mockStore({
       createTemplate: {
@@ -228,11 +218,7 @@ describe('Testing async actions to create a template', () => {
         },
       },
     });
-
-    return store.dispatch(closeCreateTemplateDialog(true))
-      .then(() => {
-        expect(store.getActions())
-          .toEqual(expectedAction);
-      });
+    expect(store.dispatch(closeCreateTemplateDialog(true)))
+      .toEqual(null);
   });
 });

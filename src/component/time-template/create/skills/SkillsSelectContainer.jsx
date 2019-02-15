@@ -4,6 +4,7 @@ import { getInputError } from '../../../bpm-text-field/text-field-selector';
 import { getTemplateToCreateValue } from '../create-template-selector';
 import { getSkillsList } from './skills-selector';
 import BpmSelectMultiple from '../../../bpm-select/BpmSelectMultiple';
+import { DialogContentFieldNames } from '../create-template-const';
 
 const mapStateToProps = (state, ownProps) => ({
   itemList: getSkillsList(state),
@@ -15,8 +16,8 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSelectionChange: (event) => {
-    dispatch(ownProps.onSelectionChanged(event.target.name, event.target.value));
+  onSelectionChange: (selection) => {
+    dispatch(ownProps.onSelectionChanged(DialogContentFieldNames.TEMPLATE_SKILLS, selection));
   },
 });
 

@@ -1,10 +1,10 @@
 class InputValidator {
-  isValidNumberInput(input) {
-    return typeof input !== 'undefined' && input !== '' && !isNaN(input);
-  }
-
   isValidStringInput(input) {
     return typeof input !== 'undefined' && input !== '';
+  }
+
+  isValidArrayWithAtLeastOneEntry(input) {
+    return typeof input !== 'undefined' && input.length > 0;
   }
 }
 

@@ -1,8 +1,8 @@
 import expect from 'expect';
 import {
   CLEAR_TEXT_FIELDS,
-  REMOVE_INPUT_ERROR,
-  removeAllTextFieldDataAndErrors,
+  REMOVE_INPUT_ERROR, removeAllInputErrors,
+  removeAllTextFieldData,
   removeInputError,
   SET_INPUT_ERROR,
   setInputError,
@@ -39,24 +39,12 @@ describe('Tests text field actions', () => {
       .toEqual(expectedAction);
   });
 
-  it('Creates an action to remove an input error on a specified field', () => {
-    const field = 'fieldName';
-
-    const expectedAction = {
-      type: REMOVE_INPUT_ERROR,
-      field,
-    };
-
-    expect(removeInputError(field))
-      .toEqual(expectedAction);
-  });
-
   it('Creates an action to remove input errors and data on all fields', () => {
     const expectedAction = {
       type: CLEAR_TEXT_FIELDS,
     };
 
-    expect(removeAllTextFieldDataAndErrors())
+    expect(removeAllTextFieldData())
       .toEqual(expectedAction);
   });
 });

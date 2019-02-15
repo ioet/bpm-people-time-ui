@@ -1,4 +1,4 @@
-import { SET_INPUT_ERROR, CLEAR_TEXT_FIELDS, REMOVE_INPUT_ERROR } from './text-field-actions';
+import { REMOVE_ALL_INPUT_ERRORS, SET_INPUT_ERROR } from './text-field-actions';
 
 export const textFieldReducer = (state = { createdTemplateError: {} }, action) => {
   switch (action.type) {
@@ -10,15 +10,7 @@ export const textFieldReducer = (state = { createdTemplateError: {} }, action) =
           [action.field]: true,
         },
       };
-    case REMOVE_INPUT_ERROR:
-      return {
-        ...state,
-        createdTemplateError: {
-          ...state.createdTemplateError,
-          [action.field]: false,
-        },
-      };
-    case CLEAR_TEXT_FIELDS:
+    case REMOVE_ALL_INPUT_ERRORS:
       return {
         createdTemplateError: {},
       };

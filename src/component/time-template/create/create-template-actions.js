@@ -1,9 +1,10 @@
 import { getTemplateToCreate } from './create-template-selector';
-import { removeAllTextFieldDataAndErrors } from '../../bpm-text-field/text-field-actions';
+import { removeAllInputErrors, removeAllTextFieldData, setInputError } from '../../bpm-text-field/text-field-actions';
 import { addTimeTemplates } from '../template-actions';
 import { showMessage } from '../../message-snackbar/message-actions';
-import { CreateTemplateErrorMessage } from './create-template-const';
+import { CreateTemplateErrorMessage, DialogContentFieldErros, DialogContentFieldNames } from './create-template-const';
 import PeopleTimeApi from '../../../apis/PeopleTimeApi';
+import InputValidator from '../../bpm-text-field/InputValidator';
 
 export const SHOW_CREATE_TEMPLATE_DIALOG = 'SHOW_CREATE_TEMPLATE_DIALOG';
 export const HIDE_CREATE_TEMPLATE_DIALOG = 'HIDE_CREATE_TEMPLATE_DIALOG';
@@ -31,29 +32,43 @@ export const createTimeTemplate = () => (
       .then((response) => {
         dispatch(addTimeTemplates([response.data]));
         dispatch(hideCreateDialog());
-        dispatch(removeAllTextFieldDataAndErrors());
+        dispatch(removeAllTextFieldData());
       })
       .catch((error) => {
-        console.log(error.response);
         dispatch(showMessage(CreateTemplateErrorMessage.CREATE_TEMPLATE_FAILED));
       });
   }
 );
 
-// TODO validate templates
-export const isTemplateDataValid = template => true;
+export const isTemplateDataValid = (dispatch, template) => {
+  dispatch(removeAllInputErrors());
+
+  const fieldNames = Object.values(DialogContentFieldNames);
+  const errorMessages = Object.values(DialogContentFieldErros);
+
+  const inputValidator = new InputValidator();
+  for (let i = 0; i < fieldNames.length; i++) {
+    if (!inputValidator.isValidStringInput(template[fieldNames[i]])) {
+      dispatch(showMessage(errorMessages[i]));
+      dispatch(setInputError(fieldNames[i]));
+      return false;
+    }
+  }
+  return true;
+};
 
 export const closeCreateTemplateDialog = confirmed => (
   (dispatch, getState) => {
     if (confirmed) {
       const template = getTemplateToCreate(getState());
-      if (isTemplateDataValid(template)) {
+      if (isTemplateDataValid(dispatch, template)) {
         return dispatch(createTimeTemplate(template));
       }
       return null;
     }
     dispatch(hideCreateDialog());
-    dispatch(removeAllTextFieldDataAndErrors());
+    dispatch(removeAllTextFieldData());
+    dispatch(removeAllInputErrors());
     return null;
   }
 );

@@ -9,8 +9,9 @@ const mapDispatchToProps = dispatch => ({
   googleResponseSuccessful: (response) => {
     const loginToken = response.tokenObj.id_token;
     const userEmail = response.profileObj.email;
+    const userName = response.profileObj.name;
     if (response.profileObj.email.endsWith(GoogleLoginConst.IOET_DOMAIN)) {
-      dispatch(getUserIdByEmail(loginToken, userEmail));
+      dispatch(getUserIdByEmail(loginToken, userEmail, userName));
     } else {
       dispatch(showMessage(LoginErrorMessage.GOOGLE_ACCOUNT_NOT_PERMITTED));
     }

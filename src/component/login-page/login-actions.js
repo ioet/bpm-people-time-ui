@@ -4,7 +4,6 @@ import { showMessage } from '../message-snackbar/message-actions';
 import Cookie from '../../cookies/Cookie';
 import { getTimeTemplates } from '../time-template/template-actions';
 import PeopleApi from '../../apis/PeopleApi';
-import { getLastActiveTime } from '../time-event/time-event-actions';
 import { getAllOrganizations } from '../time-template/create/organizations/organizations-actions';
 import { getAllProjects } from '../time-template/create/projects/projects-actions';
 import { getAllSkills } from '../time-template/create/skills/skills-actions';
@@ -23,21 +22,34 @@ export const performLogin = (loginToken, userEmail, userId) => (
     new Cookie(LoginStateConst.USER_ID).setValue(userId, 1);
     dispatch(loginAction(loginToken, userEmail, userId));
     dispatch(getTimeTemplates());
-    dispatch(getLastActiveTime());
     dispatch(getAllOrganizations());
     dispatch(getAllProjects());
     dispatch(getAllSkills());
   }
 );
 
-export const getUserIdByEmail = (loginToken, userEmail) => (
+export const createNewUser = (loginToken, userEmail, userName) => (
+  dispatch => new PeopleApi().createNewUser(userEmail, userName)
+    .then((response) => {
+      dispatch(performLogin(loginToken, userEmail, response.data.id));
+    })
+    .catch((error) => {
+      dispatch(showMessage(LoginErrorMessage.FAILED_TO_CREATE_NEW_USER));
+    })
+);
+
+export const getUserIdByEmail = (loginToken, userEmail, userName) => (
   dispatch => new PeopleApi().getUserByEmail(userEmail)
     .then((response) => {
       const userId = response.data[0].id;
       dispatch(performLogin(loginToken, userEmail, userId));
     })
     .catch((error) => {
-      dispatch(showMessage(LoginErrorMessage.BPM_SERVER_NOT_AVAILABLE));
+      if (error.response.status === 404) {
+        dispatch(createNewUser(loginToken, userEmail, userName));
+      } else {
+        dispatch(showMessage(LoginErrorMessage.BPM_SERVER_NOT_AVAILABLE));
+      }
     })
 );
 

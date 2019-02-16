@@ -13,4 +13,5 @@ export const LoginErrorMessage = {
   LOGIN_FAILED: 'Login failed',
   GOOGLE_ACCOUNT_NOT_PERMITTED: 'This account doesn\'t have permission to access this page',
   BPM_SERVER_NOT_AVAILABLE: 'Could not connect to BPM server',
+  FAILED_TO_CREATE_NEW_USER: 'Unable to log in',
 };

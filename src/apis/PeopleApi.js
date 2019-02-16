@@ -12,6 +12,13 @@ class PeopleApi {
   getUserByEmail(email) {
     return this.peopleApi.get(`${PEOPLE_API_PATH}?email=${email}`);
   }
+
+  createNewUser(userEmail, userName) {
+    return this.peopleApi.post(PEOPLE_API_PATH, {
+      name: userName,
+      authentication_identity: userEmail,
+    });
+  }
 }
 
 export default PeopleApi;

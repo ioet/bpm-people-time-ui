@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import BpmSelect from '../../../bpm-select/BpmSelect';
-import createActivityList from './ActivityList';
 import { getInputError } from '../../../bpm-text-field/text-field-selector';
 import { getTemplateToCreateValue } from '../create-template-selector';
+import { getActivitiesList } from './activities-selector';
 
 const mapStateToProps = (state, ownProps) => ({
-  itemList: createActivityList(),
+  itemList: getActivitiesList(state),
   selectedItem: getTemplateToCreateValue(state, ownProps.selectName),
   error: getInputError(state, ownProps.selectName),
   selectLabel: ownProps.selectLabel,

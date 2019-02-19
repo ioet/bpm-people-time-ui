@@ -21,6 +21,7 @@ const CreateTemplateDialog = (props) => {
       open={open}
       TransitionComponent={Transition}
       keepMounted
+      fullScreen
       onClose={(e) => {
         e.preventDefault();
         handleClose(false);

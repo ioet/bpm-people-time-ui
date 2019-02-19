@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const PEOPLE_TIME_TIME_TEMPLATES = '/time-templates';
 const PEOPLE_TIME_TIME_EVENTS = '/time-events';
+const PEOPLE_TIME_ACTIVITIES = '/activities';
 const START_TIME_EVENT = '/start';
 const STOP_TIME_EVENT = '/stop';
 
@@ -34,6 +35,10 @@ class PeopleTimeApi {
 
   getLastActiveTime(personId) {
     return this.peopleTimeApi.get(`${PEOPLE_TIME_TIME_EVENTS}?personId=${personId}&lastActive=true`);
+  }
+
+  getAllActivities() {
+    return this.peopleTimeApi.get(PEOPLE_TIME_ACTIVITIES);
   }
 }
 

@@ -7,6 +7,7 @@ import PeopleApi from '../../apis/PeopleApi';
 import { getAllOrganizations } from '../time-template/create/organizations/organizations-actions';
 import { getAllProjects } from '../time-template/create/projects/projects-actions';
 import { getAllSkills } from '../time-template/create/skills/skills-actions';
+import { getAllActivities } from '../time-template/create/activities/activities-actions';
 
 export const loginAction = (loginToken, userEmail, userId) => ({
   type: LoginAction.PERFORM_LOGIN,
@@ -22,6 +23,7 @@ export const performLogin = (loginToken, userEmail, userId) => (
     new Cookie(LoginStateConst.USER_ID).setValue(userId, 1);
     dispatch(loginAction(loginToken, userEmail, userId));
     dispatch(getTimeTemplates());
+    dispatch(getAllActivities());
     dispatch(getAllOrganizations());
     dispatch(getAllProjects());
     dispatch(getAllSkills());

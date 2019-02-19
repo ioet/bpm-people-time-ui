@@ -8,6 +8,7 @@ import timeEvent from './component/time-event/time-event-reducer';
 import organizationsList from './component/time-template/create/organizations/organizations-reducer';
 import projectsList from './component/time-template/create/projects/projects-reducer';
 import skillsList from './component/time-template/create/skills/skills-reducer';
+import activitiesList from './component/time-template/create/activities/activities-reducer';
 
 const rootReducer = combineReducers({
   login,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   organizationsList,
   projectsList,
   skillsList,
+  activitiesList,
 });
 
 export default rootReducer;
